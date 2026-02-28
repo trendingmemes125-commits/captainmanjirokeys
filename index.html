@@ -24,89 +24,153 @@
   .orb2{width:300px;height:300px;background:var(--accent2);bottom:-50px;right:-50px;animation-delay:3s}
   .orb3{width:250px;height:250px;background:var(--accent3);top:50%;right:20%;animation-delay:5s}
   @keyframes orbFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-30px)}}
+
+  /* ── LAYOUT ── */
   .container{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:40px 20px 80px}
   .header{text-align:center;margin-bottom:48px;animation:fadeDown .8s ease both}
   @keyframes fadeDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
-  .logo-badge{display:inline-block;background:linear-gradient(135deg,rgba(0,212,255,.1),rgba(124,58,237,.1));border:1px solid rgba(0,212,255,.2);border-radius:50px;padding:6px 20px;font-family:'Orbitron',monospace;font-size:11px;letter-spacing:3px;color:var(--accent);margin-bottom:20px}
-  h1{font-family:'Orbitron',monospace;font-size:clamp(28px,5vw,42px);font-weight:900;background:linear-gradient(135deg,#fff 0%,var(--accent) 50%,var(--accent2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px}
-  .subtitle{color:var(--muted);font-size:15px;font-weight:300;letter-spacing:1px}
-  .progress-bar{display:flex;align-items:center;justify-content:center;margin-bottom:40px;animation:fadeUp .8s .2s ease both}
   @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-  .step-dot{display:flex;flex-direction:column;align-items:center;gap:6px}
+  .logo-badge{display:inline-block;background:linear-gradient(135deg,rgba(0,212,255,.1),rgba(124,58,237,.1));border:1px solid rgba(0,212,255,.2);border-radius:50px;padding:6px 20px;font-family:'Orbitron',monospace;font-size:11px;letter-spacing:3px;color:var(--accent);margin-bottom:20px}
+  h1{font-family:'Orbitron',monospace;font-size:clamp(24px,5vw,42px);font-weight:900;background:linear-gradient(135deg,#fff 0%,var(--accent) 50%,var(--accent2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px}
+  .subtitle{color:var(--muted);font-size:15px;font-weight:300;letter-spacing:1px}
+
+  /* ── PROGRESS ── */
+  .progress-bar{display:flex;align-items:center;justify-content:center;margin-bottom:40px;animation:fadeUp .8s .2s ease both;flex-wrap:nowrap;gap:0}
+  .step-dot{display:flex;flex-direction:column;align-items:center;gap:6px;flex-shrink:0}
   .dot{width:36px;height:36px;border-radius:50%;border:2px solid var(--border);background:var(--card);display:flex;align-items:center;justify-content:center;font-family:'Orbitron',monospace;font-size:13px;font-weight:700;color:var(--muted);transition:all .4s}
   .dot.active{border-color:var(--accent);color:var(--accent);box-shadow:0 0 20px rgba(0,212,255,.3)}
   .dot.done{border-color:var(--success);background:rgba(0,255,136,.1);color:var(--success);box-shadow:0 0 15px rgba(0,255,136,.2)}
-  .step-line{width:80px;height:2px;background:var(--border);margin-bottom:22px;position:relative;overflow:hidden}
+  .step-line{width:clamp(40px,8vw,80px);height:2px;background:var(--border);margin-bottom:22px;position:relative;overflow:hidden;flex-shrink:1}
   .step-line.done::after{content:'';position:absolute;inset:0;background:var(--success);animation:lineGrow .5s ease both}
   @keyframes lineGrow{from{transform:scaleX(0);transform-origin:left}to{transform:scaleX(1)}}
-  .dot-label{font-size:11px;color:var(--muted);text-align:center;letter-spacing:.5px;white-space:nowrap}
-  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:20px;position:relative;overflow:hidden;animation:fadeUp .8s ease both;transition:border-color .3s}
+  .dot-label{font-size:10px;color:var(--muted);text-align:center;letter-spacing:.5px;white-space:nowrap}
+
+  /* ── CARDS ── */
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px;position:relative;overflow:hidden;animation:fadeUp .8s ease both;transition:border-color .3s}
   .card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,212,255,.03),transparent 50%);pointer-events:none}
   .card.locked{opacity:.4;pointer-events:none}
   .card.completed{border-color:rgba(0,255,136,.3);background:linear-gradient(135deg,rgba(0,255,136,.04),var(--card))}
-  .card-header{display:flex;align-items:center;gap:14px;margin-bottom:20px}
-  .task-num{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,rgba(0,212,255,.15),rgba(124,58,237,.15));border:1px solid rgba(0,212,255,.2);display:flex;align-items:center;justify-content:center;font-family:'Orbitron',monospace;font-size:16px;font-weight:900;color:var(--accent);flex-shrink:0;transition:all .4s}
+  .card-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px;flex-wrap:nowrap}
+  .task-num{width:40px;height:40px;min-width:40px;border-radius:10px;background:linear-gradient(135deg,rgba(0,212,255,.15),rgba(124,58,237,.15));border:1px solid rgba(0,212,255,.2);display:flex;align-items:center;justify-content:center;font-family:'Orbitron',monospace;font-size:16px;font-weight:900;color:var(--accent);flex-shrink:0;transition:all .4s}
   .task-num.done-num{background:linear-gradient(135deg,rgba(0,255,136,.15),rgba(0,255,136,.05));border-color:rgba(0,255,136,.3);color:var(--success)}
-  .task-title{font-family:'Orbitron',monospace;font-size:14px;font-weight:700;color:#fff;letter-spacing:1px}
-  .task-subtitle{font-size:13px;color:var(--muted);margin-top:3px;font-weight:300}
-  .cbadge{margin-left:auto;background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);border-radius:20px;padding:4px 12px;font-size:11px;color:var(--success);font-family:'Orbitron',monospace;letter-spacing:1px}
+  .task-title{font-family:'Orbitron',monospace;font-size:13px;font-weight:700;color:#fff;letter-spacing:1px}
+  .task-subtitle{font-size:12px;color:var(--muted);margin-top:3px;font-weight:300}
+  .cbadge{margin-left:auto;background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);border-radius:20px;padding:4px 10px;font-size:10px;color:var(--success);font-family:'Orbitron',monospace;letter-spacing:1px;white-space:nowrap;flex-shrink:0}
   .task-desc{font-size:14px;color:#94a3b8;line-height:1.6;margin-bottom:20px;font-weight:300}
-  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:8px;font-family:'Orbitron',monospace;font-size:12px;font-weight:700;letter-spacing:1.5px;cursor:pointer;border:none;transition:all .3s;text-decoration:none}
+
+  /* ── BUTTONS ── */
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:8px;font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:1.5px;cursor:pointer;border:none;transition:all .3s;text-decoration:none;white-space:nowrap}
   .btn-linkvertise{background:linear-gradient(135deg,#ff6420,#e04400);color:#fff;box-shadow:0 4px 20px rgba(255,100,32,.35)}
   .btn-linkvertise:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,100,32,.55)}
-  .lv-hint{display:flex;align-items:center;gap:7px;margin-top:14px;font-size:12px;color:var(--accent);font-family:'Orbitron',monospace;letter-spacing:.5px;background:rgba(0,212,255,.06);border:1px solid rgba(0,212,255,.15);border-radius:8px;padding:9px 14px}
   .btn-primary{background:linear-gradient(135deg,var(--accent),#0066ff);color:#000;box-shadow:0 4px 20px rgba(0,212,255,.3)}
   .btn-primary:hover{transform:translateY(-2px)}
   .btn-danger{background:linear-gradient(135deg,var(--accent2),#cc1a60);color:#fff;box-shadow:0 4px 20px rgba(255,62,138,.3)}
   .btn-danger:hover{transform:translateY(-2px)}
   .btn-outline{background:transparent;border:1px solid var(--border);color:var(--muted)}
   .btn-outline:hover{border-color:var(--accent);color:var(--accent)}
-  .wait-timer{display:none;align-items:center;gap:16px;background:rgba(0,0,0,.3);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin-top:14px}
-  .wait-timer.active{display:flex}
-  .timer-display{font-family:'Orbitron',monospace;font-size:32px;font-weight:900;color:var(--accent);min-width:60px;text-align:center;text-shadow:0 0 20px rgba(0,212,255,.5);transition:color .3s}
+  .btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+  .btn-group{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+
+  /* ── IMPROVED TIMER ── */
+  .wait-timer{display:none;background:rgba(0,212,255,.05);border:1px solid rgba(0,212,255,.2);border-radius:12px;padding:16px 18px;margin-top:14px}
+  .wait-timer.active{display:block}
+  .wait-timer-top{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+  .timer-icon{font-size:22px;flex-shrink:0}
+  .timer-info{flex:1}
+  .timer-heading{font-family:'Orbitron',monospace;font-size:11px;color:var(--accent);letter-spacing:1px;margin-bottom:2px}
+  .timer-subtext{font-size:12px;color:#94a3b8;line-height:1.4}
+  .timer-display{font-family:'Orbitron',monospace;font-size:26px;font-weight:900;color:var(--accent);text-shadow:0 0 20px rgba(0,212,255,.5);transition:color .3s;white-space:nowrap}
   .timer-display.urgent{color:var(--accent2);text-shadow:0 0 20px rgba(255,62,138,.5)}
-  .timer-bar-wrap{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+  .timer-bar-wrap{height:6px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden}
   .timer-bar{height:100%;background:linear-gradient(90deg,var(--accent),#0066ff);border-radius:3px;width:0%;transition:width .25s linear}
   .timer-bar.urgent{background:linear-gradient(90deg,var(--accent2),#ff6b00)}
-  .timer-label{font-size:11px;color:var(--muted);font-family:'Orbitron',monospace;letter-spacing:1px}
+  .timer-bar-label{display:flex;justify-content:space-between;margin-top:6px}
+  .timer-bar-label span{font-size:10px;color:var(--muted);font-family:'Orbitron',monospace;letter-spacing:.5px}
+
+  /* ── HINT ── */
+  .lv-hint{display:none;align-items:center;gap:7px;margin-top:12px;font-size:12px;color:var(--accent);font-family:'Orbitron',monospace;letter-spacing:.5px;background:rgba(0,212,255,.06);border:1px solid rgba(0,212,255,.15);border-radius:8px;padding:9px 14px;line-height:1.5}
+  .lv-hint.visible{display:flex}
+  .lv-hint.success{color:var(--success);background:rgba(0,255,136,.06);border-color:rgba(0,255,136,.2)}
+  .lv-hint.warning{color:#ffb347;background:rgba(255,179,71,.06);border-color:rgba(255,179,71,.2)}
+
+  /* ── SAVED BANNER ── */
   .saved-banner{display:none;background:linear-gradient(135deg,rgba(0,255,136,.06),rgba(0,212,255,.06));border:1px solid rgba(0,255,136,.35);border-radius:16px;padding:28px;margin-bottom:20px;animation:fadeDown .6s ease both}
   .saved-banner.visible{display:block}
-  .saved-top{display:flex;align-items:center;gap:12px;margin-bottom:20px}
-  .saved-icon{width:44px;height:44px;border-radius:12px;background:rgba(0,255,136,.12);border:1px solid rgba(0,255,136,.3);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
-  .saved-title{font-family:'Orbitron',monospace;font-size:14px;font-weight:700;color:var(--success);letter-spacing:1px}
+  .saved-top{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+  .saved-icon{width:44px;height:44px;min-width:44px;border-radius:12px;background:rgba(0,255,136,.12);border:1px solid rgba(0,255,136,.3);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+  .saved-title{font-family:'Orbitron',monospace;font-size:13px;font-weight:700;color:var(--success);letter-spacing:1px}
   .saved-sub{font-size:13px;color:var(--muted);margin-top:3px}
-  .expiry-countdown{display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);border-radius:10px;padding:10px 16px;margin-bottom:20px;font-family:'Orbitron',monospace;font-size:12px;color:var(--accent);letter-spacing:1px}
+  .expiry-countdown{display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);border-radius:10px;padding:10px 16px;margin-bottom:20px;font-family:'Orbitron',monospace;font-size:12px;color:var(--accent);letter-spacing:1px;flex-wrap:wrap}
   .expiry-countdown.expiring{background:rgba(255,62,138,.08);border-color:rgba(255,62,138,.2);color:var(--accent2)}
   .expiry-countdown.expired{background:rgba(255,62,138,.15);border-color:rgba(255,62,138,.5);color:var(--accent2);font-weight:700}
   @keyframes renewPulse{0%,100%{box-shadow:0 4px 20px rgba(255,62,138,.3);transform:translateY(0)}50%{box-shadow:0 8px 40px rgba(255,62,138,.7);transform:translateY(-3px)}}
-  .key-card{background:linear-gradient(135deg,rgba(0,255,136,.05),rgba(0,212,255,.05));border:1px solid rgba(0,255,136,.3);border-radius:16px;padding:32px;text-align:center;display:none;animation:keyReveal .8s ease both}
+
+  /* ── KEY CARD ── */
+  .key-card{background:linear-gradient(135deg,rgba(0,255,136,.05),rgba(0,212,255,.05));border:1px solid rgba(0,255,136,.3);border-radius:16px;padding:28px;text-align:center;display:none;animation:keyReveal .8s ease both}
   @keyframes keyReveal{from{opacity:0;transform:scale(.9) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
   .key-card.visible{display:block}
   .key-label{font-family:'Orbitron',monospace;font-size:11px;letter-spacing:3px;color:var(--success);margin-bottom:16px}
-  .key-display{font-family:'Orbitron',monospace;font-size:clamp(13px,2.5vw,18px);font-weight:700;color:#fff;background:rgba(0,0,0,.6);border:1px solid rgba(0,255,136,.3);border-radius:10px;padding:18px 24px;margin-bottom:12px;letter-spacing:2px;word-break:break-all;text-shadow:0 0 20px rgba(0,255,136,.3);cursor:pointer;transition:all .3s;user-select:all}
+  .key-display{font-family:'Orbitron',monospace;font-size:clamp(11px,2.5vw,18px);font-weight:700;color:#fff;background:rgba(0,0,0,.6);border:1px solid rgba(0,255,136,.3);border-radius:10px;padding:16px 18px;margin-bottom:12px;letter-spacing:2px;word-break:break-all;text-shadow:0 0 20px rgba(0,255,136,.3);cursor:pointer;transition:all .3s;user-select:all}
   .key-display:hover{border-color:rgba(0,255,136,.7);box-shadow:0 0 30px rgba(0,255,136,.15)}
   .copy-hint{font-size:11px;color:var(--accent);letter-spacing:1px;margin-bottom:16px;font-family:'Orbitron',monospace}
   .key-note{font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.6}
   .expiry-info{display:inline-flex;align-items:center;gap:6px;background:rgba(255,62,138,.1);border:1px solid rgba(255,62,138,.2);border-radius:20px;padding:4px 14px;font-size:12px;color:var(--accent2);letter-spacing:1px}
-  .btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+
+  /* ── KEY GENERATING ANIMATION ── */
+  .key-generating{display:none;background:linear-gradient(135deg,rgba(124,58,237,.08),rgba(0,212,255,.08));border:1px solid rgba(124,58,237,.3);border-radius:16px;padding:40px 28px;text-align:center;margin-bottom:20px;animation:fadeUp .5s ease both}
+  .key-generating.visible{display:block}
+  .gen-spinner{width:56px;height:56px;border:3px solid rgba(124,58,237,.2);border-top-color:var(--accent3);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 20px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .gen-dots{display:flex;justify-content:center;gap:6px;margin-bottom:16px}
+  .gen-dot{width:8px;height:8px;border-radius:50%;background:var(--accent3);animation:dotBounce 1.2s ease-in-out infinite}
+  .gen-dot:nth-child(1){animation-delay:0s}
+  .gen-dot:nth-child(2){animation-delay:.2s}
+  .gen-dot:nth-child(3){animation-delay:.4s}
+  @keyframes dotBounce{0%,80%,100%{transform:scale(.6);opacity:.4}40%{transform:scale(1);opacity:1}}
+  .gen-title{font-family:'Orbitron',monospace;font-size:14px;font-weight:700;color:var(--accent3);letter-spacing:2px;margin-bottom:8px}
+  .gen-steps{font-size:12px;color:var(--muted);font-family:'Orbitron',monospace;letter-spacing:.5px;min-height:18px}
+
+  /* ── HOW-TO ── */
   .how-to{background:rgba(0,212,255,.05);border:1px solid rgba(0,212,255,.15);border-radius:12px;padding:16px 20px;margin-top:20px;text-align:left}
   .how-to-title{font-family:'Orbitron',monospace;font-size:11px;letter-spacing:2px;color:var(--accent);margin-bottom:10px}
   .how-to ol{padding-left:18px}
   .how-to li{font-size:13px;color:#94a3b8;line-height:2.2}
   .how-to strong{color:#fff}
-  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);z-index:300;align-items:center;justify-content:center}
+
+  /* ── MODAL ── */
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);z-index:300;align-items:center;justify-content:center;padding:20px}
   .modal-overlay.open{display:flex}
-  .modal{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px;max-width:400px;width:90%;text-align:center;animation:fadeDown .3s ease both}
+  .modal{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px;max-width:400px;width:100%;text-align:center;animation:fadeDown .3s ease both}
   .modal-icon{font-size:40px;margin-bottom:16px}
   .modal-title{font-family:'Orbitron',monospace;font-size:16px;font-weight:700;color:#fff;margin-bottom:10px}
   .modal-body{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:24px}
   .modal-body strong{color:var(--accent2)}
-  .modal-btns{display:flex;gap:12px;justify-content:center}
+  .modal-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+  /* ── PARTICLES & TOAST ── */
   .particle{position:fixed;pointer-events:none;z-index:100;border-radius:2px;animation:particleFall 2s ease-out forwards}
   @keyframes particleFall{0%{opacity:1;transform:translateY(0) rotate(0deg)}100%{opacity:0;transform:translateY(400px) rotate(720deg)}}
-  .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:rgba(0,0,0,.85);border:1px solid rgba(0,255,136,.4);backdrop-filter:blur(10px);border-radius:10px;padding:12px 24px;font-family:'Orbitron',monospace;font-size:12px;color:var(--success);letter-spacing:1px;z-index:400;transition:transform .4s ease;white-space:nowrap}
+  .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:rgba(0,0,0,.85);border:1px solid rgba(0,255,136,.4);backdrop-filter:blur(10px);border-radius:10px;padding:12px 24px;font-family:'Orbitron',monospace;font-size:11px;color:var(--success);letter-spacing:1px;z-index:400;transition:transform .4s ease;white-space:nowrap;max-width:90vw;text-overflow:ellipsis;overflow:hidden}
   .toast.show{transform:translateX(-50%) translateY(0)}
-  .icon{width:16px;height:16px}
+  .icon{width:16px;height:16px;flex-shrink:0}
+
+  /* ── MOBILE ── */
+  @media(max-width:480px){
+    .container{padding:24px 14px 60px}
+    .header{margin-bottom:32px}
+    .card{padding:18px}
+    .btn{padding:10px 16px;font-size:10px;letter-spacing:1px}
+    .btn-group{gap:8px}
+    .dot{width:30px;height:30px;font-size:11px}
+    .step-line{width:clamp(24px,5vw,50px)}
+    .dot-label{font-size:9px}
+    .wait-timer{padding:14px}
+    .timer-display{font-size:22px}
+    .key-display{font-size:10px;padding:12px}
+    .how-to li{line-height:2}
+    .saved-top{gap:10px}
+    .expiry-countdown{font-size:11px;padding:8px 12px}
+  }
 </style>
 </head>
 <body>
@@ -115,6 +179,7 @@
 <div class="orb orb2"></div>
 <div class="orb orb3"></div>
 
+<!-- RENEW MODAL -->
 <div class="modal-overlay" id="renewModal">
   <div class="modal">
     <div class="modal-icon">🔄</div>
@@ -187,36 +252,45 @@
     <div class="card" id="card1" style="animation-delay:.3s">
       <div class="card-header">
         <div class="task-num" id="tnum1">1</div>
-        <div>
+        <div style="flex:1;min-width:0">
           <div class="task-title">COMPLETE LINKVERTISE #1</div>
           <div class="task-subtitle">Task 1 of 2 — Required</div>
         </div>
         <div class="cbadge" id="badge1" style="display:none">✓ DONE</div>
       </div>
       <p class="task-desc">
-        Click below to open Linkvertise. Complete ALL steps on that page, then return here.
-        The <strong style="color:#fff">I Completed It</strong> button only appears after you've spent enough time on the Linkvertise page.
+        Click the button below to open Linkvertise. Complete <strong style="color:#fff">all steps</strong> on that page,
+        then return here. The <strong style="color:#fff">I Completed It</strong> button will appear automatically
+        once you've spent enough time on the page.
       </p>
-      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+      <div class="btn-group">
         <a href="https://linkvertise.com/1180115/Aq5w4bwQ1EVS?o=sharing" target="_blank" class="btn btn-linkvertise" id="lv1Btn" onclick="onLV1Click()">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
           OPEN LINKVERTISE #1
         </a>
         <button class="btn btn-primary" id="lv1DoneBtn" onclick="completeLV1()" style="display:none">✓ I COMPLETED IT</button>
       </div>
+
+      <!-- IMPROVED TIMER -->
       <div class="wait-timer" id="waitTimer1">
-        <div>
+        <div class="wait-timer-top">
+          <div class="timer-icon">⏱️</div>
+          <div class="timer-info">
+            <div class="timer-heading">VERIFYING YOUR VISIT</div>
+            <div class="timer-subtext">Please stay on the Linkvertise page and complete all steps. We're confirming your visit — don't close that tab!</div>
+          </div>
           <div class="timer-display" id="timerDisp1">45</div>
-          <div class="timer-label">SECS LEFT</div>
         </div>
-        <div style="flex:1">
-          <div class="timer-bar-wrap"><div class="timer-bar" id="timerBar1"></div></div>
-          <div style="font-size:12px;color:#94a3b8;margin-top:8px;font-family:'Orbitron',monospace;letter-spacing:.5px">Finish ALL steps on Linkvertise, then return here</div>
+        <div class="timer-bar-wrap"><div class="timer-bar" id="timerBar1"></div></div>
+        <div class="timer-bar-label">
+          <span>VERIFYING…</span>
+          <span id="timerPct1">0%</span>
         </div>
       </div>
-      <div class="lv-hint" id="lv1Hint" style="display:none">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <span id="lv1HintText">Complete all steps on the Linkvertise page, then come back here…</span>
+
+      <div class="lv-hint" id="lv1Hint">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span id="lv1HintText">Complete all steps on the Linkvertise page, then come back here.</span>
       </div>
     </div>
 
@@ -224,37 +298,57 @@
     <div class="card locked" id="card2" style="animation-delay:.5s">
       <div class="card-header">
         <div class="task-num" id="tnum2">2</div>
-        <div>
+        <div style="flex:1;min-width:0">
           <div class="task-title">COMPLETE LINKVERTISE #2</div>
           <div class="task-subtitle">Task 2 of 2 — Required</div>
         </div>
         <div class="cbadge" id="badge2" style="display:none">✓ DONE</div>
       </div>
       <p class="task-desc">
-        Almost there! Open the second Linkvertise link, complete ALL steps,
-        then come back and click <strong style="color:#fff">I Completed It</strong> to generate your key.
+        Almost there! Open the second Linkvertise link and complete <strong style="color:#fff">all steps</strong>,
+        then return and click <strong style="color:#fff">I Completed It</strong> to generate your key.
       </p>
-      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+      <div class="btn-group">
         <a href="https://linkvertise.com/1180115/8UQPdI8h2QDK?o=sharing" target="_blank" class="btn btn-linkvertise" id="lv2Btn" onclick="onLV2Click()">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
           OPEN LINKVERTISE #2
         </a>
         <button class="btn btn-primary" id="lv2DoneBtn" onclick="completeLV2()" style="display:none">✓ I COMPLETED IT</button>
       </div>
+
+      <!-- IMPROVED TIMER -->
       <div class="wait-timer" id="waitTimer2">
-        <div>
+        <div class="wait-timer-top">
+          <div class="timer-icon">⏱️</div>
+          <div class="timer-info">
+            <div class="timer-heading">VERIFYING YOUR VISIT</div>
+            <div class="timer-subtext">Please stay on the Linkvertise page and complete all steps. We're confirming your visit — don't close that tab!</div>
+          </div>
           <div class="timer-display" id="timerDisp2">45</div>
-          <div class="timer-label">SECS LEFT</div>
         </div>
-        <div style="flex:1">
-          <div class="timer-bar-wrap"><div class="timer-bar" id="timerBar2"></div></div>
-          <div style="font-size:12px;color:#94a3b8;margin-top:8px;font-family:'Orbitron',monospace;letter-spacing:.5px">Finish ALL steps on Linkvertise, then return here</div>
+        <div class="timer-bar-wrap"><div class="timer-bar" id="timerBar2"></div></div>
+        <div class="timer-bar-label">
+          <span>VERIFYING…</span>
+          <span id="timerPct2">0%</span>
         </div>
       </div>
-      <div class="lv-hint" id="lv2Hint" style="display:none">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <span id="lv2HintText">Complete all steps on the Linkvertise page, then come back here…</span>
+
+      <div class="lv-hint" id="lv2Hint">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span id="lv2HintText">Complete all steps on the Linkvertise page, then come back here.</span>
       </div>
+    </div>
+
+    <!-- KEY GENERATING (NEW LOADING STATE) -->
+    <div class="key-generating" id="keyGenerating">
+      <div class="gen-spinner"></div>
+      <div class="gen-dots">
+        <div class="gen-dot"></div>
+        <div class="gen-dot"></div>
+        <div class="gen-dot"></div>
+      </div>
+      <div class="gen-title">GENERATING YOUR KEY</div>
+      <div class="gen-steps" id="genStepText">Verifying task completion…</div>
     </div>
 
     <!-- KEY OUTPUT -->
@@ -288,14 +382,69 @@
 // ================================================================
 const SECRET              = "AnimeFinals2025XK9";
 const STORAGE_KEY         = "af_saved_key";
-const PROGRESS_KEY        = "af_task_progress"; // saves task1-done across refreshes
-const LV_REQUIRED_AWAY_MS = 45000;              // 45 s min away on LV page
+const PROGRESS_KEY        = "af_task_progress";
+const FINGERPRINT_KEY     = "af_fp";
+const LV_REQUIRED_AWAY_MS = 45000;
 
 let generatedKey   = null;
 let expiryInterval = null;
 
 // ================================================================
-//  PROGRESS — persist task1 completion across page refreshes
+//  IMPROVED UID / FINGERPRINTING
+//  Uses a composite fingerprint so clearing localStorage alone
+//  doesn't reset the 24-hour restriction.
+// ================================================================
+function buildFingerprint() {
+  const parts = [
+    navigator.language || '',
+    (navigator.languages || []).join(','),
+    String(screen.width) + 'x' + String(screen.height),
+    String(screen.colorDepth),
+    Intl.DateTimeFormat().resolvedOptions().timeZone || '',
+    navigator.hardwareConcurrency || '',
+    navigator.platform || '',
+  ];
+  // simple djb2 over the joined string
+  let h = 5381;
+  const s = parts.join('|');
+  for (let i = 0; i < s.length; i++) h = (((h << 5) + h) ^ s.charCodeAt(i)) >>> 0;
+  return h.toString(36).toUpperCase();
+}
+
+function getUID() {
+  const fp = buildFingerprint();
+  // Store fp so subsequent visits can be matched even after localStorage clear
+  try {
+    // Try sessionStorage as backup (survives localStorage.clear() if done from JS)
+    sessionStorage.setItem(FINGERPRINT_KEY, fp);
+  } catch(e) {}
+
+  let u = null;
+  try { u = localStorage.getItem('af_uid'); } catch(e) {}
+  if (!u) {
+    // No stored UID — check if there's a key stored under a fingerprint-derived UID
+    // If so, reuse it so the 24h window persists
+    const fpUID = 'U' + fp.slice(0, 5);
+    try {
+      const savedRaw = localStorage.getItem(STORAGE_KEY);
+      if (savedRaw) {
+        const saved = JSON.parse(savedRaw);
+        // If saved key contains the fp-based UID, reuse it
+        if (saved.uid && saved.uid === fpUID) { u = fpUID; }
+      }
+    } catch(e) {}
+    if (!u) {
+      const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      // Seed with fingerprint so same device generates consistent UID
+      u = fpUID;
+    }
+    try { localStorage.setItem('af_uid', u); } catch(e) {}
+  }
+  return u;
+}
+
+// ================================================================
+//  PROGRESS
 // ================================================================
 function saveProgress(t1) {
   try { localStorage.setItem(PROGRESS_KEY, JSON.stringify({ t1 })); } catch(e) {}
@@ -304,7 +453,7 @@ function loadProgress() {
   try { const r = localStorage.getItem(PROGRESS_KEY); return r ? JSON.parse(r) : { t1: false }; }
   catch(e) { return { t1: false }; }
 }
-function clearProgress() { localStorage.removeItem(PROGRESS_KEY); }
+function clearProgress() { try { localStorage.removeItem(PROGRESS_KEY); } catch(e) {} }
 
 // ================================================================
 //  SAVED KEY
@@ -313,7 +462,7 @@ function loadSavedKey() {
   try { const r = localStorage.getItem(STORAGE_KEY); return r ? JSON.parse(r) : null; }
   catch(e) { return null; }
 }
-function clearSavedKey() { localStorage.removeItem(STORAGE_KEY); }
+function clearSavedKey() { try { localStorage.removeItem(STORAGE_KEY); } catch(e) {} }
 
 // ================================================================
 //  TOAST
@@ -324,7 +473,7 @@ function showToast(msg, color) {
   t.style.color = color || 'var(--success)';
   t.classList.add('show');
   clearTimeout(t._tid);
-  t._tid = setTimeout(() => t.classList.remove('show'), 3000);
+  t._tid = setTimeout(() => t.classList.remove('show'), 3500);
 }
 
 // ================================================================
@@ -354,7 +503,7 @@ function onKeyExpiredLive() {
   const renewBtn = document.getElementById('renewBtn');
   if (renewBtn) renewBtn.style.animation = 'renewPulse 1.5s ease-in-out infinite';
   document.getElementById('headerSub').textContent = 'Your key expired — click Renew to get a new one';
-  showToast('🔴 Your key expired — click Renew Key!', 'var(--accent2)');
+  showToast('🔴 Your key has expired — click Renew Key to get a new one!', 'var(--accent2)');
 }
 
 // ================================================================
@@ -383,13 +532,13 @@ function showExpiredState(saved) {
 }
 
 // ================================================================
-//  RESTORE TASK 1 VISUALS ON RELOAD  (no security bypass —
-//  _S.restoreTask1Done() sets the in-memory flag too)
+//  RESTORE TASK 1 UI ON RELOAD
 // ================================================================
 function restoreTask1UI() {
   document.getElementById('card1').classList.add('completed');
   document.getElementById('badge1').style.display = 'inline-flex';
-  document.getElementById('lv1Hint').style.display = 'none';
+  const hint = document.getElementById('lv1Hint');
+  hint.style.display = 'none'; hint.classList.remove('visible');
   document.getElementById('lv1DoneBtn').style.display = 'none';
   const btn = document.getElementById('lv1Btn');
   btn.style.opacity = '0.6'; btn.style.pointerEvents = 'none';
@@ -405,13 +554,11 @@ function restoreTask1UI() {
 //  PAGE LOAD
 // ================================================================
 window.addEventListener('DOMContentLoaded', () => {
-  // Priority 1: a fully generated key exists
   const saved = loadSavedKey();
   if (saved) {
     saved.expiry > Date.now() ? showSavedKey(saved) : showExpiredState(saved);
     return;
   }
-  // Priority 2: task 1 was completed before last refresh
   const prog = loadProgress();
   if (prog.t1) {
     _S.restoreTask1Done();
@@ -448,7 +595,8 @@ const _S = (function() {
   let leaveTime=0, awayTick=null;
 
   function awayCountdown(n) {
-    const disp=document.getElementById('timerDisp'+n), bar=document.getElementById('timerBar'+n), wrap=document.getElementById('waitTimer'+n);
+    const disp=document.getElementById('timerDisp'+n), bar=document.getElementById('timerBar'+n);
+    const pctEl=document.getElementById('timerPct'+n), wrap=document.getElementById('waitTimer'+n);
     if (!wrap) return;
     wrap.classList.add('active');
     if (awayTick) clearInterval(awayTick);
@@ -456,20 +604,26 @@ const _S = (function() {
       const spent = (n===1?st.lv1AwayMs:st.lv2AwayMs) + (Date.now()-leaveTime);
       const rem   = Math.max(0, LV_REQUIRED_AWAY_MS - spent);
       const secs  = Math.ceil(rem/1000);
-      const pct   = Math.min(100,(spent/LV_REQUIRED_AWAY_MS)*100);
+      const pct   = Math.min(100, Math.round((spent/LV_REQUIRED_AWAY_MS)*100));
       if (disp) { disp.textContent=secs; disp.classList.toggle('urgent',secs<=10); }
       if (bar)  { bar.style.width=pct+'%'; bar.classList.toggle('urgent',secs<=10); }
+      if (pctEl){ pctEl.textContent=pct+'%'; }
       if (rem<=0) { clearInterval(awayTick); awayTick=null; wrap.classList.remove('active'); }
     }, 250);
   }
 
-  // Devtools check
-  let dtOpen=false;
+  // Devtools detection — only block on repeated triggers, not window resize
+  let dtOpen=false, dtTriggers=0, dtCooldown=null;
   setInterval(()=>{
     const dw=window.outerWidth-window.innerWidth, dh=window.outerHeight-window.innerHeight;
-    if(dw>160||dh>160){if(!dtOpen){dtOpen=true;st.tamperCount++;if(st.tamperCount>=2){st.blocked=true;showSecurityBlock();}}}
-    else dtOpen=false;
-  },1000);
+    const open = dw>200||dh>200; // higher threshold to avoid resize false-positives
+    if(open&&!dtOpen){
+      dtOpen=true; dtTriggers++;
+      if (dtCooldown) clearTimeout(dtCooldown);
+      dtCooldown = setTimeout(()=>{ dtTriggers=0; }, 10000);
+      if(dtTriggers>=3){ st.blocked=true; showSecurityBlock(); }
+    } else if(!open) { dtOpen=false; }
+  }, 1500);
 
   // Visibility API
   document.addEventListener('visibilitychange',()=>{
@@ -482,23 +636,38 @@ const _S = (function() {
       if (st.activeTask===1&&st.lv1TabLeft&&!st.lv1Done) {
         st.lv1AwayMs += Date.now()-leaveTime;
         document.getElementById('waitTimer1').classList.remove('active');
-        if (st.lv1AwayMs >= LV_REQUIRED_AWAY_MS) { st.lv1ReadyToComplete=true; showDone(1); }
-        else { const n=Math.ceil((LV_REQUIRED_AWAY_MS-st.lv1AwayMs)/1000); showToast(`⚠ ${n}s Stay on Linkvertise in Website To Complete And Wait Timer!`,'var(--accent2)'); document.getElementById('lv1Hint').style.display='flex'; document.getElementById('lv1HintText').textContent=`Go back — ${n}s Dont Close The Task 1 Tabs If You Not Completed It Auto Stuck The Timer So Refresh it To Reagain The Task if Happned! And Don't Forget Click "I Completed It" When You Done`; }
+        if (st.lv1AwayMs >= LV_REQUIRED_AWAY_MS) {
+          st.lv1ReadyToComplete=true; showDone(1);
+        } else {
+          const n=Math.ceil((LV_REQUIRED_AWAY_MS-st.lv1AwayMs)/1000);
+          showToast(`⚠ Need ${n}s more — please return to the Linkvertise tab!`,'var(--accent2)');
+          const hint=document.getElementById('lv1Hint');
+          hint.classList.add('visible','warning'); hint.classList.remove('success');
+          document.getElementById('lv1HintText').textContent=`You need ${n} Dont Close The Task 1 Linkvertise Tabs If You Not Completed It Auto Stuck The Timer So Refresh it To Reagain The Task if Happned! And Don't Forget Click "I Completed It" When You Done`;
+        }
       }
       if (st.activeTask===2&&st.lv2TabLeft&&!st.lv2Done) {
         st.lv2AwayMs += Date.now()-leaveTime;
         document.getElementById('waitTimer2').classList.remove('active');
-        if (st.lv2AwayMs >= LV_REQUIRED_AWAY_MS) { st.lv2ReadyToComplete=true; showDone(2); }
-        else { const n=Math.ceil((LV_REQUIRED_AWAY_MS-st.lv2AwayMs)/1000); showToast(`⚠ ${n}s Stay on Linkvertise in Website To Complete And Wait Timer!`,'var(--accent2)'); document.getElementById('lv2Hint').style.display='flex'; document.getElementById('lv2HintText').textContent=`Go back — ${n}s Dont Close The Task 2 Tabs If You Not Completed It Auto Stuck The Timer So Refresh it To Reagain The Task if Happned! And Don't Forget Click "I Completed It" When You Done`; }
+        if (st.lv2AwayMs >= LV_REQUIRED_AWAY_MS) {
+          st.lv2ReadyToComplete=true; showDone(2);
+        } else {
+          const n=Math.ceil((LV_REQUIRED_AWAY_MS-st.lv2AwayMs)/1000);
+          showToast(`⚠ Need ${n}s more — please return to the Linkvertise tab!`,'var(--accent2)');
+          const hint=document.getElementById('lv2Hint');
+          hint.classList.add('visible','warning'); hint.classList.remove('success');
+          document.getElementById('lv2HintText').textContent=`You need ${n} Dont Close The Task 2 Linkvertise Tabs If You Not Completed It Auto Stuck The Timer So Refresh it To Reagain The Task if Happned! And Don't Forget Click "I Completed It" When You Done`;
+        }
       }
     }
   });
 
   function showDone(n) {
     document.getElementById('lv'+n+'DoneBtn').style.display='inline-flex';
-    document.getElementById('lv'+n+'Hint').style.display='flex';
-    document.getElementById('lv'+n+'HintText').textContent='✓ Time done! Click "I Completed It" ↑';
-    showToast('✓ Time complete! Click "I Completed It"');
+    const hint=document.getElementById('lv'+n+'Hint');
+    hint.classList.add('visible','success'); hint.classList.remove('warning');
+    document.getElementById('lv'+n+'HintText').textContent='✓ Verification complete! Click "I Completed It" above to continue.';
+    showToast('✓ Verified! Click "I Completed It" to continue.');
   }
 
   return {
@@ -510,31 +679,31 @@ const _S = (function() {
       st.lv1TabLeft=false; st.lv1ReadyToComplete=false; st.lv1AwayMs=0;
     },
     finishLV1(tok) {
-      if(st.blocked){showToast('🔴 Security check failed','var(--accent2)');return;}
-      if(st.lv1Done)return;
-      if(!st.lv1Token){showToast('⚠ Open the Linkvertise link first!','var(--accent2)');return;}
-      if(!st.lv1TabLeft){showToast('⚠ You must visit the Linkvertise page first!','var(--accent2)');return;}
-      if(!st.lv1ReadyToComplete){showToast('⚠ Spend more time on Linkvertise!','var(--accent2)');return;}
-      if(tok!==st.lv1Token||hashToken(st.lv1Token,SALT)!==h1){st.tamperCount++;showToast('🔴 Invalid token','var(--accent2)');return;}
+      if(st.blocked){ showToast('🔴 Security check failed — please reload.','var(--accent2)'); return; }
+      if(st.lv1Done) return;
+      if(!st.lv1Token){ showToast('⚠ Please open the Linkvertise link first!','var(--accent2)'); return; }
+      if(!st.lv1TabLeft){ showToast('⚠ You need to visit the Linkvertise page before marking it complete.','var(--accent2)'); return; }
+      if(!st.lv1ReadyToComplete){ showToast('⚠ Please spend more time on the Linkvertise page.','var(--accent2)'); return; }
+      if(tok!==st.lv1Token||hashToken(st.lv1Token,SALT)!==h1){ st.tamperCount++; showToast('🔴 Verification token mismatch — please try again.','var(--accent2)'); return; }
       st.lv1Done=true; st.activeTask=0; st.lv1Token=null; h1=null;
-      saveProgress(true);  // ← PERSIST across refresh
+      saveProgress(true);
       onLV1Complete();
     },
 
     startLV2() {
-      if(st.blocked)return;
-      if(!st.lv1Done){showToast('⚠ Complete Task 1 first!','var(--accent2)');return;}
-      if(st.lv2Done)return;
+      if(st.blocked) return;
+      if(!st.lv1Done){ showToast('⚠ Please complete Task 1 first!','var(--accent2)'); return; }
+      if(st.lv2Done) return;
       st.activeTask=2; st.lv2Token=makeToken(); h2=hashToken(st.lv2Token,SALT);
       st.lv2TabLeft=false; st.lv2ReadyToComplete=false; st.lv2AwayMs=0;
     },
     finishLV2(tok) {
-      if(st.blocked){showToast('🔴 Security check failed','var(--accent2)');return;}
-      if(st.lv2Done)return;
-      if(!st.lv2Token){showToast('⚠ Open the Linkvertise link first!','var(--accent2)');return;}
-      if(!st.lv2TabLeft){showToast('⚠ You must visit the Linkvertise page first!','var(--accent2)');return;}
-      if(!st.lv2ReadyToComplete){showToast('⚠ Spend more time on Linkvertise!','var(--accent2)');return;}
-      if(tok!==st.lv2Token||hashToken(st.lv2Token,SALT)!==h2){st.tamperCount++;showToast('🔴 Invalid token','var(--accent2)');return;}
+      if(st.blocked){ showToast('🔴 Security check failed — please reload.','var(--accent2)'); return; }
+      if(st.lv2Done) return;
+      if(!st.lv2Token){ showToast('⚠ Please open the Linkvertise link first!','var(--accent2)'); return; }
+      if(!st.lv2TabLeft){ showToast('⚠ You need to visit the Linkvertise page before marking it complete.','var(--accent2)'); return; }
+      if(!st.lv2ReadyToComplete){ showToast('⚠ Please spend more time on the Linkvertise page.','var(--accent2)'); return; }
+      if(tok!==st.lv2Token||hashToken(st.lv2Token,SALT)!==h2){ st.tamperCount++; showToast('🔴 Verification token mismatch — please try again.','var(--accent2)'); return; }
       st.lv2Done=true; st.activeTask=0; st.lv2Token=null; h2=null;
       onLV2Complete();
     },
@@ -549,7 +718,7 @@ function showSecurityBlock() {
   if (document.getElementById('secBlock')) return;
   const o=document.createElement('div'); o.id='secBlock';
   o.style.cssText='position:fixed;inset:0;background:#050810;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:Orbitron,monospace;text-align:center;padding:40px';
-  o.innerHTML=`<div style="font-size:48px;margin-bottom:20px">🔴</div><div style="font-size:18px;font-weight:900;color:#ff3e8a;letter-spacing:2px;margin-bottom:12px">SECURITY BLOCK</div><div style="font-size:13px;color:#4a5568;max-width:320px;line-height:1.8">Bypass attempt detected.<br>Reload and complete tasks normally.</div><button onclick="location.reload()" style="margin-top:28px;padding:12px 28px;border-radius:8px;background:linear-gradient(135deg,#ff3e8a,#cc1a60);color:#fff;border:none;font-family:Orbitron,monospace;font-size:12px;font-weight:700;letter-spacing:1.5px;cursor:pointer">RELOAD PAGE</button>`;
+  o.innerHTML=`<div style="font-size:48px;margin-bottom:20px">🔴</div><div style="font-size:18px;font-weight:900;color:#ff3e8a;letter-spacing:2px;margin-bottom:12px">SECURITY BLOCK</div><div style="font-size:13px;color:#4a5568;max-width:320px;line-height:1.8">A bypass attempt was detected.<br>Please reload the page and complete the tasks normally.</div><button onclick="location.reload()" style="margin-top:28px;padding:12px 28px;border-radius:8px;background:linear-gradient(135deg,#ff3e8a,#cc1a60);color:#fff;border:none;font-family:Orbitron,monospace;font-size:12px;font-weight:700;letter-spacing:1.5px;cursor:pointer">RELOAD PAGE</button>`;
   document.body.appendChild(o);
 }
 
@@ -558,46 +727,83 @@ function showSecurityBlock() {
 // ================================================================
 function onLV1Click() {
   _S.startLV1();
-  document.getElementById('lv1Hint').style.display='flex';
-  document.getElementById('lv1HintText').textContent='Complete ALL steps on Linkvertise — timer counting your time away…';
+  const hint = document.getElementById('lv1Hint');
+  hint.classList.add('visible'); hint.classList.remove('success','warning');
+  document.getElementById('lv1HintText').textContent='Switch to the Linkvertise tab and complete all the steps there. Come back here when you\'re done.';
   const b=document.getElementById('lv1Btn'); b.style.opacity='0.6'; b.style.pointerEvents='none';
-  b.innerHTML=b.innerHTML.replace('OPEN LINKVERTISE #1','OPENED — GO COMPLETE IT ✓');
+  b.innerHTML=b.innerHTML.replace('OPEN LINKVERTISE #1','OPENED — COMPLETE STEPS ✓');
 }
 function completeLV1() { _S.finishLV1(_S.getToken1()); }
 
 function onLV1Complete() {
   document.getElementById('card1').classList.add('completed');
   document.getElementById('badge1').style.display='inline-flex';
-  document.getElementById('lv1Hint').style.display='none';
+  const hint=document.getElementById('lv1Hint');
+  hint.classList.remove('visible'); hint.style.display='none';
   document.getElementById('lv1DoneBtn').style.display='none';
   const n1=document.getElementById('tnum1'); n1.classList.add('done-num'); n1.textContent='✓';
   const d1=document.getElementById('dot1'); d1.classList.remove('active'); d1.classList.add('done'); d1.textContent='✓';
   document.getElementById('line1').classList.add('done');
   document.getElementById('dot2').classList.add('active');
   document.getElementById('card2').classList.remove('locked');
-  showToast('✓ Task 1 complete & saved! Now do Task 2.');
+  showToast('✓ Task 1 complete and saved! Now complete Task 2.');
 }
 
 function onLV2Click() {
   _S.startLV2();
-  document.getElementById('lv2Hint').style.display='flex';
-  document.getElementById('lv2HintText').textContent='Complete ALL steps on Linkvertise — timer counting your time away…';
+  const hint = document.getElementById('lv2Hint');
+  hint.classList.add('visible'); hint.classList.remove('success','warning');
+  document.getElementById('lv2HintText').textContent='Switch to the Linkvertise tab and complete all the steps there. Come back here when you\'re done.';
   const b=document.getElementById('lv2Btn'); b.style.opacity='0.6'; b.style.pointerEvents='none';
-  b.innerHTML=b.innerHTML.replace('OPEN LINKVERTISE #2','OPENED — GO COMPLETE IT ✓');
+  b.innerHTML=b.innerHTML.replace('OPEN LINKVERTISE #2','OPENED — COMPLETE STEPS ✓');
 }
 function completeLV2() { _S.finishLV2(_S.getToken2()); }
 
 function onLV2Complete() {
   document.getElementById('card2').classList.add('completed');
   document.getElementById('badge2').style.display='inline-flex';
-  document.getElementById('lv2Hint').style.display='none';
+  const hint=document.getElementById('lv2Hint');
+  hint.classList.remove('visible'); hint.style.display='none';
   document.getElementById('lv2DoneBtn').style.display='none';
   const n2=document.getElementById('tnum2'); n2.classList.add('done-num'); n2.textContent='✓';
   const d2=document.getElementById('dot2'); d2.classList.remove('active'); d2.classList.add('done'); d2.textContent='✓';
   document.getElementById('line2').classList.add('done');
   document.getElementById('dot3').classList.add('active');
-  showToast('✓ Task 2 complete! Generating key…');
-  setTimeout(generateKey, 800);
+  showToast('✓ Task 2 complete! Generating your key…');
+  // Show loading animation, then generate
+  animateKeyGeneration();
+}
+
+// ================================================================
+//  KEY GENERATION ANIMATION
+// ================================================================
+const GEN_STEPS = [
+  'Verifying task completion…',
+  'Checking Linkvertise confirmations…',
+  'Binding key to your device…',
+  'Encrypting access token…',
+  'Finalizing your key…',
+];
+
+function animateKeyGeneration() {
+  const genEl = document.getElementById('keyGenerating');
+  const stepEl = document.getElementById('genStepText');
+  genEl.classList.add('visible');
+  genEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+  let i = 0;
+  const interval = setInterval(() => {
+    if (i < GEN_STEPS.length) {
+      stepEl.textContent = GEN_STEPS[i];
+      i++;
+    } else {
+      clearInterval(interval);
+      setTimeout(() => {
+        genEl.classList.remove('visible');
+        generateKey();
+      }, 400);
+    }
+  }, 380);
 }
 
 // ================================================================
@@ -607,19 +813,19 @@ function getDaySeed() { const n=new Date(); return `${n.getUTCFullYear()}${Strin
 function djb2(s)      { let h=5381; for(let i=0;i<s.length;i++)h=(((h<<5)+h)^s.charCodeAt(i))>>>0; return h; }
 function seg(r)       { return djb2(r).toString(36).toUpperCase().padStart(7,'0').slice(-5); }
 function buildKey(sec,day,uid){ const b=`${sec}|${day}|${uid}`; return `AF-${uid}-${seg(b+'2')}-${seg(b+'3')}-${seg(b)}`; }
-function getUID()     { let u=localStorage.getItem('af_uid'); if(!u){const c='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';u=Array.from({length:5},()=>c[Math.floor(Math.random()*c.length)]).join('');localStorage.setItem('af_uid',u);} return u; }
 
 function generateKey() {
   if (!_S.isDone()) return;
-  generatedKey = buildKey(SECRET, getDaySeed(), getUID());
+  const uid = getUID();
+  generatedKey = buildKey(SECRET, getDaySeed(), uid);
   const expiry = Date.now()+24*60*60*1000;
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify({key:generatedKey,expiry,generated:Date.now()})); } catch(e){}
-  clearProgress(); // progress no longer needed once key is saved
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify({key:generatedKey,expiry,generated:Date.now(),uid})); } catch(e){}
+  clearProgress();
   document.getElementById('keyDisplay').textContent = generatedKey;
   const kc = document.getElementById('keyCard'); kc.classList.add('visible');
   document.getElementById('dot3').classList.remove('active'); document.getElementById('dot3').classList.add('done');
   launchParticles();
-  showToast('🎉 Key generated & saved!');
+  showToast('🎉 Key generated and saved!');
   setTimeout(()=>kc.scrollIntoView({behavior:'smooth',block:'center'}),100);
 }
 
@@ -628,7 +834,7 @@ function generateKey() {
 // ================================================================
 function copyKey() { if(generatedKey) doCopy(generatedKey,'keyDisplay'); }
 function copySavedKey() {
-  const s=loadSavedKey(); if(!s||s.expiry<=Date.now()){showToast('🔴 Key expired','var(--accent2)');return;}
+  const s=loadSavedKey(); if(!s||s.expiry<=Date.now()){showToast('🔴 This key has expired.','var(--accent2)');return;}
   doCopy(document.getElementById('savedKeyDisplay').textContent,'savedKeyDisplay');
 }
 function doCopy(text,elId) {
@@ -636,7 +842,7 @@ function doCopy(text,elId) {
     showToast('✓ Copied to clipboard!');
     const d=document.getElementById(elId); d.style.borderColor='rgba(0,255,136,.9)'; d.style.boxShadow='0 0 40px rgba(0,255,136,.2)';
     setTimeout(()=>{d.style.borderColor='';d.style.boxShadow='';},1200);
-  }).catch(()=>showToast('Select key and press Ctrl+C'));
+  }).catch(()=>showToast('Please select the key and press Ctrl+C / Cmd+C'));
 }
 
 // ================================================================
@@ -645,7 +851,8 @@ function doCopy(text,elId) {
 function openRenewModal() { document.getElementById('renewModal').classList.add('open'); }
 function closeModal()     { document.getElementById('renewModal').classList.remove('open'); }
 function confirmRenew() {
-  closeModal(); clearSavedKey(); clearProgress(); localStorage.removeItem('af_uid');
+  closeModal(); clearSavedKey(); clearProgress();
+  // Don't clear af_uid — keeps fingerprint-based persistence
   if(expiryInterval)clearInterval(expiryInterval);
   showToast('🔄 Reloading…'); setTimeout(()=>location.reload(),1000);
 }
@@ -664,4 +871,3 @@ function launchParticles() {
 </script>
 </body>
 </html>
-
