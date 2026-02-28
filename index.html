@@ -483,13 +483,13 @@ const _S = (function() {
         st.lv1AwayMs += Date.now()-leaveTime;
         document.getElementById('waitTimer1').classList.remove('active');
         if (st.lv1AwayMs >= LV_REQUIRED_AWAY_MS) { st.lv1ReadyToComplete=true; showDone(1); }
-        else { const n=Math.ceil((LV_REQUIRED_AWAY_MS-st.lv1AwayMs)/1000); showToast(`⚠ ${n}s more on Linkvertise needed!`,'var(--accent2)'); document.getElementById('lv1Hint').style.display='flex'; document.getElementById('lv1HintText').textContent=`Go back — ${n}s more needed!`; }
+        else { const n=Math.ceil((LV_REQUIRED_AWAY_MS-st.lv1AwayMs)/1000); showToast(`⚠ ${n}s Stay on Linkvertise in Website To Complete And Wait Timer!`,'var(--accent2)'); document.getElementById('lv1Hint').style.display='flex'; document.getElementById('lv1HintText').textContent=`Go back — ${n}s Dont Close The Task 1 Tabs If You Not Completed It Auto Stuck The Timer So Refresh it To Reagain The Task if Happned! And Don't Forget Click "I Completed It" When You Done`; }
       }
       if (st.activeTask===2&&st.lv2TabLeft&&!st.lv2Done) {
         st.lv2AwayMs += Date.now()-leaveTime;
         document.getElementById('waitTimer2').classList.remove('active');
         if (st.lv2AwayMs >= LV_REQUIRED_AWAY_MS) { st.lv2ReadyToComplete=true; showDone(2); }
-        else { const n=Math.ceil((LV_REQUIRED_AWAY_MS-st.lv2AwayMs)/1000); showToast(`⚠ ${n}s more on Linkvertise needed!`,'var(--accent2)'); document.getElementById('lv2Hint').style.display='flex'; document.getElementById('lv2HintText').textContent=`Go back — ${n}s more needed!`; }
+        else { const n=Math.ceil((LV_REQUIRED_AWAY_MS-st.lv2AwayMs)/1000); showToast(`⚠ ${n}s Stay on Linkvertise in Website To Complete And Wait Timer!`,'var(--accent2)'); document.getElementById('lv2Hint').style.display='flex'; document.getElementById('lv2HintText').textContent=`Go back — ${n}s Dont Close The Task 2 Tabs If You Not Completed It Auto Stuck The Timer So Refresh it To Reagain The Task if Happned! And Don't Forget Click "I Completed It" When You Done`; }
       }
     }
   });
@@ -664,3 +664,4 @@ function launchParticles() {
 </script>
 </body>
 </html>
+
