@@ -52,29 +52,23 @@
   .cbadge{margin-left:auto;background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);border-radius:20px;padding:4px 12px;font-size:11px;color:var(--success);font-family:'Orbitron',monospace;letter-spacing:1px}
   .task-desc{font-size:14px;color:#94a3b8;line-height:1.6;margin-bottom:20px;font-weight:300}
   .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:8px;font-family:'Orbitron',monospace;font-size:12px;font-weight:700;letter-spacing:1.5px;cursor:pointer;border:none;transition:all .3s;text-decoration:none}
-  .btn-discord{background:linear-gradient(135deg,#5865F2,#4752C4);color:#fff;box-shadow:0 4px 20px rgba(88,101,242,.3)}
-  .btn-discord:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(88,101,242,.5)}
   .btn-linkvertise{background:linear-gradient(135deg,#ff6420,#e04400);color:#fff;box-shadow:0 4px 20px rgba(255,100,32,.35)}
   .btn-linkvertise:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,100,32,.55)}
   .lv-hint{display:flex;align-items:center;gap:7px;margin-top:14px;font-size:12px;color:var(--accent);font-family:'Orbitron',monospace;letter-spacing:.5px;background:rgba(0,212,255,.06);border:1px solid rgba(0,212,255,.15);border-radius:8px;padding:9px 14px}
   .btn-primary{background:linear-gradient(135deg,var(--accent),#0066ff);color:#000;box-shadow:0 4px 20px rgba(0,212,255,.3)}
   .btn-primary:hover{transform:translateY(-2px)}
-  .btn-success{background:linear-gradient(135deg,var(--success),#00cc6a);color:#000;box-shadow:0 4px 20px rgba(0,255,136,.3)}
-  .btn-success:hover{transform:translateY(-2px)}
   .btn-danger{background:linear-gradient(135deg,var(--accent2),#cc1a60);color:#fff;box-shadow:0 4px 20px rgba(255,62,138,.3)}
   .btn-danger:hover{transform:translateY(-2px)}
   .btn-outline{background:transparent;border:1px solid var(--border);color:var(--muted)}
   .btn-outline:hover{border-color:var(--accent);color:var(--accent)}
-  .btn:disabled{opacity:.4;cursor:not-allowed;transform:none!important}
-  .timer-wrap{display:flex;align-items:center;gap:16px;background:rgba(0,0,0,.3);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin-bottom:20px}
+  .wait-timer{display:none;align-items:center;gap:16px;background:rgba(0,0,0,.3);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin-top:14px}
+  .wait-timer.active{display:flex}
   .timer-display{font-family:'Orbitron',monospace;font-size:32px;font-weight:900;color:var(--accent);min-width:60px;text-align:center;text-shadow:0 0 20px rgba(0,212,255,.5);transition:color .3s}
   .timer-display.urgent{color:var(--accent2);text-shadow:0 0 20px rgba(255,62,138,.5)}
   .timer-bar-wrap{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
-  .timer-bar{height:100%;background:linear-gradient(90deg,var(--accent),#0066ff);border-radius:3px;transition:width 1s linear;width:100%}
+  .timer-bar{height:100%;background:linear-gradient(90deg,var(--accent),#0066ff);border-radius:3px;width:0%;transition:width .25s linear}
   .timer-bar.urgent{background:linear-gradient(90deg,var(--accent2),#ff6b00)}
   .timer-label{font-size:11px;color:var(--muted);font-family:'Orbitron',monospace;letter-spacing:1px}
-
-  /* ── Saved key banner (shows on reload if key exists) ── */
   .saved-banner{display:none;background:linear-gradient(135deg,rgba(0,255,136,.06),rgba(0,212,255,.06));border:1px solid rgba(0,255,136,.35);border-radius:16px;padding:28px;margin-bottom:20px;animation:fadeDown .6s ease both}
   .saved-banner.visible{display:block}
   .saved-top{display:flex;align-items:center;gap:12px;margin-bottom:20px}
@@ -85,8 +79,6 @@
   .expiry-countdown.expiring{background:rgba(255,62,138,.08);border-color:rgba(255,62,138,.2);color:var(--accent2)}
   .expiry-countdown.expired{background:rgba(255,62,138,.15);border-color:rgba(255,62,138,.5);color:var(--accent2);font-weight:700}
   @keyframes renewPulse{0%,100%{box-shadow:0 4px 20px rgba(255,62,138,.3);transform:translateY(0)}50%{box-shadow:0 8px 40px rgba(255,62,138,.7);transform:translateY(-3px)}}
-
-  /* ── Key card ── */
   .key-card{background:linear-gradient(135deg,rgba(0,255,136,.05),rgba(0,212,255,.05));border:1px solid rgba(0,255,136,.3);border-radius:16px;padding:32px;text-align:center;display:none;animation:keyReveal .8s ease both}
   @keyframes keyReveal{from{opacity:0;transform:scale(.9) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
   .key-card.visible{display:block}
@@ -102,8 +94,6 @@
   .how-to ol{padding-left:18px}
   .how-to li{font-size:13px;color:#94a3b8;line-height:2.2}
   .how-to strong{color:#fff}
-
-  /* ── Renew confirm dialog ── */
   .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);z-index:300;align-items:center;justify-content:center}
   .modal-overlay.open{display:flex}
   .modal{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px;max-width:400px;width:90%;text-align:center;animation:fadeDown .3s ease both}
@@ -112,12 +102,11 @@
   .modal-body{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:24px}
   .modal-body strong{color:var(--accent2)}
   .modal-btns{display:flex;gap:12px;justify-content:center}
-
   .particle{position:fixed;pointer-events:none;z-index:100;border-radius:2px;animation:particleFall 2s ease-out forwards}
   @keyframes particleFall{0%{opacity:1;transform:translateY(0) rotate(0deg)}100%{opacity:0;transform:translateY(400px) rotate(720deg)}}
   .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:rgba(0,0,0,.85);border:1px solid rgba(0,255,136,.4);backdrop-filter:blur(10px);border-radius:10px;padding:12px 24px;font-family:'Orbitron',monospace;font-size:12px;color:var(--success);letter-spacing:1px;z-index:400;transition:transform .4s ease;white-space:nowrap}
   .toast.show{transform:translateX(-50%) translateY(0)}
-  .icon{width:16px;height:16px;fill:currentColor}
+  .icon{width:16px;height:16px}
 </style>
 </head>
 <body>
@@ -126,7 +115,6 @@
 <div class="orb orb2"></div>
 <div class="orb orb3"></div>
 
-<!-- Renew confirm modal -->
 <div class="modal-overlay" id="renewModal">
   <div class="modal">
     <div class="modal-icon">🔄</div>
@@ -143,14 +131,13 @@
 </div>
 
 <div class="container">
-
   <div class="header">
     <div class="logo-badge">To Unlock The Script</div>
     <h1>KEY SYSTEM</h1>
     <p class="subtitle" id="headerSub">Complete 2 tasks to generate your free access key</p>
   </div>
 
-  <!-- ── SAVED KEY BANNER (shown on reload if valid key saved) ── -->
+  <!-- SAVED KEY BANNER -->
   <div class="saved-banner" id="savedBanner">
     <div class="saved-top">
       <div class="saved-icon">🔑</div>
@@ -177,9 +164,8 @@
     </div>
   </div>
 
-  <!-- ── TASK FLOW (hidden when saved key shown) ── -->
+  <!-- TASK FLOW -->
   <div id="taskFlow">
-
     <div class="progress-bar">
       <div class="step-dot">
         <div class="dot active" id="dot1">1</div>
@@ -208,9 +194,8 @@
         <div class="cbadge" id="badge1" style="display:none">✓ DONE</div>
       </div>
       <p class="task-desc">
-        Click the button below to open the Linkvertise link. Complete all the steps on the page
-        (wait for the timer, click <strong style="color:#fff">Continue</strong>, etc.), then come back here
-        and click <strong style="color:#fff">I Completed It</strong>.
+        Click below to open Linkvertise. Complete ALL steps on that page, then return here.
+        The <strong style="color:#fff">I Completed It</strong> button only appears after you've spent enough time on the Linkvertise page.
       </p>
       <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
         <a href="https://linkvertise.com/1180115/Aq5w4bwQ1EVS?o=sharing" target="_blank" class="btn btn-linkvertise" id="lv1Btn" onclick="onLV1Click()">
@@ -218,6 +203,16 @@
           OPEN LINKVERTISE #1
         </a>
         <button class="btn btn-primary" id="lv1DoneBtn" onclick="completeLV1()" style="display:none">✓ I COMPLETED IT</button>
+      </div>
+      <div class="wait-timer" id="waitTimer1">
+        <div>
+          <div class="timer-display" id="timerDisp1">45</div>
+          <div class="timer-label">SECS LEFT</div>
+        </div>
+        <div style="flex:1">
+          <div class="timer-bar-wrap"><div class="timer-bar" id="timerBar1"></div></div>
+          <div style="font-size:12px;color:#94a3b8;margin-top:8px;font-family:'Orbitron',monospace;letter-spacing:.5px">Finish ALL steps on Linkvertise, then return here</div>
+        </div>
       </div>
       <div class="lv-hint" id="lv1Hint" style="display:none">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -236,7 +231,7 @@
         <div class="cbadge" id="badge2" style="display:none">✓ DONE</div>
       </div>
       <p class="task-desc">
-        Almost there! Click below to open the second Linkvertise link. Complete all the steps,
+        Almost there! Open the second Linkvertise link, complete ALL steps,
         then come back and click <strong style="color:#fff">I Completed It</strong> to generate your key.
       </p>
       <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
@@ -246,18 +241,28 @@
         </a>
         <button class="btn btn-primary" id="lv2DoneBtn" onclick="completeLV2()" style="display:none">✓ I COMPLETED IT</button>
       </div>
+      <div class="wait-timer" id="waitTimer2">
+        <div>
+          <div class="timer-display" id="timerDisp2">45</div>
+          <div class="timer-label">SECS LEFT</div>
+        </div>
+        <div style="flex:1">
+          <div class="timer-bar-wrap"><div class="timer-bar" id="timerBar2"></div></div>
+          <div style="font-size:12px;color:#94a3b8;margin-top:8px;font-family:'Orbitron',monospace;letter-spacing:.5px">Finish ALL steps on Linkvertise, then return here</div>
+        </div>
+      </div>
       <div class="lv-hint" id="lv2Hint" style="display:none">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         <span id="lv2HintText">Complete all steps on the Linkvertise page, then come back here…</span>
       </div>
     </div>
 
-    <!-- KEY OUTPUT (after tasks) -->
+    <!-- KEY OUTPUT -->
     <div class="key-card" id="keyCard">
       <div class="key-label">🔑 Your Access Key — Auto Saved!</div>
       <div class="key-display" id="keyDisplay" onclick="copyKey()">—</div>
       <p class="copy-hint">↑ CLICK KEY TO COPY TO CLIPBOARD</p>
-      <p class="key-note">This key is <strong style="color:#fff">saved to your browser</strong> — it will be here when you return. Valid for <strong style="color:#fff">24 hours</strong>.</p>
+      <p class="key-note">Key is <strong style="color:#fff">saved to your browser</strong> — it will be here when you return. Valid for <strong style="color:#fff">24 hours</strong>.</p>
       <div class="expiry-info">⏳ Valid for 24 hours · Auto-saved ✓</div>
       <div class="how-to">
         <div class="how-to-title">HOW TO USE YOUR KEY</div>
@@ -272,50 +277,89 @@
         <button class="btn btn-danger" onclick="openRenewModal()">🔄 RENEW KEY</button>
       </div>
     </div>
-
-  </div><!-- end #taskFlow -->
-
+  </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-// =============================================================
-//  SHARED SECRET — must match the Lua script exactly
-// =============================================================
-const SECRET = "AnimeFinals2025XK9";
-const STORAGE_KEY = "af_saved_key";
+// ================================================================
+//  CONFIG
+// ================================================================
+const SECRET              = "AnimeFinals2025XK9";
+const STORAGE_KEY         = "af_saved_key";
+const PROGRESS_KEY        = "af_task_progress"; // saves task1-done across refreshes
+const LV_REQUIRED_AWAY_MS = 45000;              // 45 s min away on LV page
 
-let generatedKey = null;
+let generatedKey   = null;
 let expiryInterval = null;
 
-// =============================================================
-//  ON PAGE LOAD — check for existing saved key
-// =============================================================
-window.addEventListener('DOMContentLoaded', () => {
-  const saved = loadSavedKey();
-  if (saved) {
-    if (saved.expiry > Date.now()) {
-      showSavedKey(saved);       // valid — show key + countdown
-    } else {
-      showExpiredState(saved);   // expired — show expired UI with renew button, NOT tasks
-    }
-  }
-  // no saved key at all → show tasks normally (default state)
-});
+// ================================================================
+//  PROGRESS — persist task1 completion across page refreshes
+// ================================================================
+function saveProgress(t1) {
+  try { localStorage.setItem(PROGRESS_KEY, JSON.stringify({ t1 })); } catch(e) {}
+}
+function loadProgress() {
+  try { const r = localStorage.getItem(PROGRESS_KEY); return r ? JSON.parse(r) : { t1: false }; }
+  catch(e) { return { t1: false }; }
+}
+function clearProgress() { localStorage.removeItem(PROGRESS_KEY); }
 
+// ================================================================
+//  SAVED KEY
+// ================================================================
 function loadSavedKey() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return null;
-    return JSON.parse(raw);
-  } catch(e) { return null; }
+  try { const r = localStorage.getItem(STORAGE_KEY); return r ? JSON.parse(r) : null; }
+  catch(e) { return null; }
+}
+function clearSavedKey() { localStorage.removeItem(STORAGE_KEY); }
+
+// ================================================================
+//  TOAST
+// ================================================================
+function showToast(msg, color) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.color = color || 'var(--success)';
+  t.classList.add('show');
+  clearTimeout(t._tid);
+  t._tid = setTimeout(() => t.classList.remove('show'), 3000);
 }
 
-function clearSavedKey() {
-  localStorage.removeItem(STORAGE_KEY);
+// ================================================================
+//  EXPIRY COUNTDOWN
+// ================================================================
+function startExpiryCountdown(expiry, elId) {
+  const el = document.getElementById(elId);
+  if (!el) return;
+  if (expiryInterval) clearInterval(expiryInterval);
+  function tick() {
+    const ms = expiry - Date.now();
+    if (ms <= 0) { clearInterval(expiryInterval); onKeyExpiredLive(); return; }
+    const h = Math.floor(ms/3600000), m = Math.floor((ms%3600000)/60000), s = Math.floor((ms%60000)/1000);
+    el.textContent = h > 0 ? `⏳ Expires in ${h}h ${m}m ${s}s` : `⏳ Expires in ${m}m ${s}s`;
+    if (ms < 3600000) el.classList.add('expiring');
+  }
+  tick(); expiryInterval = setInterval(tick, 1000);
 }
 
+function onKeyExpiredLive() {
+  const ec = document.getElementById('expiryCountdown');
+  if (ec) { ec.textContent = '🔴 KEY EXPIRED'; ec.classList.remove('expiring'); ec.classList.add('expired'); }
+  const keyEl = document.getElementById('savedKeyDisplay');
+  if (keyEl) { keyEl.style.opacity='0.3'; keyEl.style.cursor='default'; keyEl.onclick=null; }
+  const cp = document.querySelector('#savedBanner .copy-hint');
+  if (cp) { cp.textContent='This key has expired — click Renew Key below'; cp.style.color='var(--accent2)'; }
+  const renewBtn = document.getElementById('renewBtn');
+  if (renewBtn) renewBtn.style.animation = 'renewPulse 1.5s ease-in-out infinite';
+  document.getElementById('headerSub').textContent = 'Your key expired — click Renew to get a new one';
+  showToast('🔴 Your key expired — click Renew Key!', 'var(--accent2)');
+}
+
+// ================================================================
+//  SHOW BANNERS
+// ================================================================
 function showSavedKey(saved) {
   document.getElementById('taskFlow').style.display = 'none';
   document.getElementById('headerSub').textContent = 'Your key is ready — tasks already complete';
@@ -324,545 +368,298 @@ function showSavedKey(saved) {
   startExpiryCountdown(saved.expiry, 'expiryCountdown');
 }
 
-// Called when key is already expired on page load
 function showExpiredState(saved) {
   document.getElementById('taskFlow').style.display = 'none';
   document.getElementById('headerSub').textContent = 'Your key expired — click Renew to get a new one';
-
-  const banner = document.getElementById('savedBanner');
-  banner.classList.add('visible');
-
-  // Show the expired key greyed out
+  document.getElementById('savedBanner').classList.add('visible');
   const keyEl = document.getElementById('savedKeyDisplay');
-  keyEl.textContent = saved.key;
-  keyEl.style.opacity = '0.3';
-  keyEl.style.cursor = 'default';
-  keyEl.onclick = null;
-
-  // Show expiry countdown as expired immediately
+  keyEl.textContent = saved.key; keyEl.style.opacity='0.3'; keyEl.style.cursor='default'; keyEl.onclick=null;
   const ec = document.getElementById('expiryCountdown');
-  ec.textContent = '🔴 KEY EXPIRED';
-  ec.classList.add('expired');
-
-  // Hide copy hint, show renew message
-  const copyHint = banner.querySelector('.copy-hint');
-  if (copyHint) {
-    copyHint.textContent = 'This key has expired — click Renew Key below to get a new one';
-    copyHint.style.color = 'var(--accent2)';
-  }
-
-  // Make renew button pulse
+  ec.textContent = '🔴 KEY EXPIRED'; ec.classList.add('expired');
+  const cp = document.querySelector('#savedBanner .copy-hint');
+  if (cp) { cp.textContent='This key has expired — click Renew Key below'; cp.style.color='var(--accent2)'; }
   const renewBtn = document.getElementById('renewBtn');
-  if (renewBtn) {
-    renewBtn.style.animation = 'renewPulse 1.5s ease-in-out infinite';
-  }
+  if (renewBtn) renewBtn.style.animation='renewPulse 1.5s ease-in-out infinite';
 }
 
-function startExpiryCountdown(expiry, elId) {
-  const el = document.getElementById(elId);
-  if (!el) return;
-  if (expiryInterval) clearInterval(expiryInterval);
-
-  function update() {
-    const ms = expiry - Date.now();
-    if (ms <= 0) {
-      clearInterval(expiryInterval);
-      // Live expiry — key just expired while user was on the page
-      onKeyExpiredLive();
-      return;
-    }
-    const h = Math.floor(ms / 3600000);
-    const m = Math.floor((ms % 3600000) / 60000);
-    const s = Math.floor((ms % 60000) / 1000);
-    el.textContent = h > 0 ? `⏳ Expires in ${h}h ${m}m ${s}s` : `⏳ Expires in ${m}m ${s}s`;
-    if (ms < 3600000) el.classList.add('expiring');
-  }
-  update();
-  expiryInterval = setInterval(update, 1000);
-}
-
-// Called when the key expires while the user is actively on the page
-function onKeyExpiredLive() {
-  const ec = document.getElementById('expiryCountdown');
-  if (ec) {
-    ec.textContent = '🔴 KEY EXPIRED';
-    ec.classList.remove('expiring');
-    ec.classList.add('expired');
-  }
-
-  // Grey out the key display
-  const keyEl = document.getElementById('savedKeyDisplay');
-  if (keyEl) {
-    keyEl.style.opacity = '0.3';
-    keyEl.style.cursor = 'default';
-    keyEl.onclick = null;
-  }
-
-  // Update copy hint
-  const banner = document.getElementById('savedBanner');
-  if (banner) {
-    const copyHint = banner.querySelector('.copy-hint');
-    if (copyHint) {
-      copyHint.textContent = 'This key has expired — click Renew Key below';
-      copyHint.style.color = 'var(--accent2)';
-    }
-  }
-
-  // Pulse the renew button
-  const renewBtn = document.getElementById('renewBtn');
-  if (renewBtn) renewBtn.style.animation = 'renewPulse 1.5s ease-in-out infinite';
-
-  // Update header
-  document.getElementById('headerSub').textContent = 'Your key expired — click Renew to get a new one';
-
-  showToast('🔴 Your key just expired — click Renew Key!');
-}
-
-// =============================================================
-//  TOAST
-// =============================================================
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  clearTimeout(t._tid);
-  t._tid = setTimeout(() => t.classList.remove('show'), 2800);
-}
-
-// =============================================================
-//  ANTI-BYPASS SECURITY SYSTEM
-//  - All state stored as hashed tokens, not plain booleans
-//  - Functions use one-time tokens generated at runtime
-//  - Timing enforced: must spend minimum time on LV page
-//  - Tab visibility tracked: must actually leave and return
-//  - Console function calls blocked (wrong token = fail)
-// =============================================================
-
-const _S = (function() {
-  // Internal sealed state — not accessible from console
-  const _state = {
-    lv1Token: null,
-    lv1TabLeft: false,
-    lv1OpenTime: 0,
-    lv1MinTime: 15000,   // must be away for at least 15 seconds
-    lv1ReadyToComplete: false,
-    lv1Done: false,
-
-    lv2Token: null,
-    lv2TabLeft: false,
-    lv2OpenTime: 0,
-    lv2MinTime: 15000,
-    lv2ReadyToComplete: false,
-    lv2Done: false,
-
-    activeTask: 0,
-    blocked: false,
-    tamperCount: 0,
-  };
-
-  // Generate a cryptographically random token
-  function makeToken() {
-    const arr = new Uint32Array(4);
-    crypto.getRandomValues(arr);
-    return Array.from(arr).map(n => n.toString(36)).join('-');
-  }
-
-  // Hash a token with a salt so stored value can't be replayed
-  function hashToken(token, salt) {
-    let h = 0x811c9dc5;
-    const s = token + '|' + salt;
-    for (let i = 0; i < s.length; i++) {
-      h ^= s.charCodeAt(i);
-      h = (h * 0x01000193) >>> 0;
-    }
-    return h.toString(36);
-  }
-
-  let _lv1Hash = null;
-  let _lv2Hash = null;
-  const _salt = makeToken(); // session salt
-
-  // Detect console open attempts (basic deterrent)
-  let _devtoolsOpen = false;
-  const _threshold = 160;
-  setInterval(() => {
-    const w = window.outerWidth - window.innerWidth;
-    const h = window.outerHeight - window.innerHeight;
-    if (w > _threshold || h > _threshold) {
-      if (!_devtoolsOpen) {
-        _devtoolsOpen = true;
-        _state.tamperCount++;
-        if (_state.tamperCount >= 2) {
-          _state.blocked = true;
-          showSecurityBlock();
-        }
-      }
-    } else { _devtoolsOpen = false; }
-  }, 1000);
-
-  // Page visibility API — detect tab switches
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      // User left the tab — record it
-      if (_state.activeTask === 1 && _state.lv1Token && !_state.lv1Done) {
-        _state.lv1TabLeft = true;
-      }
-      if (_state.activeTask === 2 && _state.lv2Token && !_state.lv2Done) {
-        _state.lv2TabLeft = true;
-      }
-    } else {
-      // User came BACK to the tab
-      if (_state.activeTask === 1 && _state.lv1TabLeft && !_state.lv1Done) {
-        const elapsed = Date.now() - _state.lv1OpenTime;
-        if (elapsed >= _state.lv1MinTime) {
-          // Already spent enough time — show button right now
-          _state.lv1ReadyToComplete = true;
-          showLV1DoneButton();
-        } else {
-          // Came back too fast — wait the remaining time then show button
-          const waitMs = _state.lv1MinTime - elapsed;
-          const s = Math.ceil(waitMs / 1000);
-          showToast(`⚠ Stay on Linkvertise for ${s} more second${s !== 1 ? 's' : ''}!`);
-          setTimeout(() => {
-            if (!_state.lv1Done) {
-              _state.lv1ReadyToComplete = true;
-              showLV1DoneButton();
-            }
-          }, waitMs);
-        }
-      }
-      if (_state.activeTask === 2 && _state.lv2TabLeft && !_state.lv2Done) {
-        const elapsed = Date.now() - _state.lv2OpenTime;
-        if (elapsed >= _state.lv2MinTime) {
-          _state.lv2ReadyToComplete = true;
-          showLV2DoneButton();
-        } else {
-          const waitMs = _state.lv2MinTime - elapsed;
-          const s = Math.ceil(waitMs / 1000);
-          showToast(`⚠ Stay on Linkvertise for ${s} more second${s !== 1 ? 's' : ''}!`);
-          setTimeout(() => {
-            if (!_state.lv2Done) {
-              _state.lv2ReadyToComplete = true;
-              showLV2DoneButton();
-            }
-          }, waitMs);
-        }
-      }
-    }
-  });
-
-  function showLV1DoneButton() {
-    document.getElementById('lv1DoneBtn').style.display = 'inline-flex';
-    document.getElementById('lv1Hint').style.display = 'flex';
-    const t = document.getElementById('lv1HintText');
-    if (t) t.textContent = 'Linkvertise complete! Click "I Completed It" above ↑';
-    showToast('✓ Done! Come back and click "I Completed It"');
-  }
-
-  function showLV2DoneButton() {
-    document.getElementById('lv2DoneBtn').style.display = 'inline-flex';
-    document.getElementById('lv2Hint').style.display = 'flex';
-    const t = document.getElementById('lv2HintText');
-    if (t) t.textContent = 'Linkvertise complete! Click "I Completed It" above ↑';
-    showToast('✓ Done! Come back and click "I Completed It"');
-  }
-
-  // Public API — returns bound functions that require valid tokens
-  return {
-    // Called when user clicks "Open Linkvertise #1"
-    startLV1: function() {
-      if (_state.blocked) return;
-      if (_state.lv1Done) return;
-      _state.activeTask = 1;
-      _state.lv1Token = makeToken();
-      _lv1Hash = hashToken(_state.lv1Token, _salt);
-      _state.lv1OpenTime = Date.now();
-      _state.lv1TabLeft = false;
-      _state.lv1ReadyToComplete = false;
-      // NO fallback setTimeout — must actually leave and return via visibility API
-    },
-
-    // Called when user clicks "I Completed It" for task 1
-    finishLV1: function(token) {
-      if (_state.blocked) { showToast('🔴 Security check failed'); return; }
-      if (_state.lv1Done) return;
-      if (!_state.lv1Token) { showToast('⚠ Open the Linkvertise link first!'); return; }
-      if (!_state.lv1TabLeft) { showToast('⚠ You must actually visit the Linkvertise page!'); return; }
-      if (!_state.lv1ReadyToComplete) { showToast('⚠ Finish the Linkvertise page fully!'); return; }
-
-      // Verify token matches (prevents console calling completeLV1())
-      const expectedHash = hashToken(_state.lv1Token, _salt);
-      if (token !== _state.lv1Token || _lv1Hash !== expectedHash) {
-        _state.tamperCount++;
-        showToast('🔴 Invalid token — bypass detected');
-        return;
-      }
-
-      _state.lv1Done = true;
-      _state.activeTask = 0;
-      _state.lv1Token = null;
-      _lv1Hash = null;
-      onLV1Complete();
-    },
-
-    startLV2: function() {
-      if (_state.blocked) return;
-      if (!_state.lv1Done) { showToast('⚠ Complete Task 1 first!'); return; }
-      if (_state.lv2Done) return;
-      _state.activeTask = 2;
-      _state.lv2Token = makeToken();
-      _lv2Hash = hashToken(_state.lv2Token, _salt);
-      _state.lv2OpenTime = Date.now();
-      _state.lv2TabLeft = false;
-      _state.lv2ReadyToComplete = false;
-    },
-
-    finishLV2: function(token) {
-      if (_state.blocked) { showToast('🔴 Security check failed'); return; }
-      if (_state.lv2Done) return;
-      if (!_state.lv2Token) { showToast('⚠ Open the Linkvertise link first!'); return; }
-      if (!_state.lv2TabLeft) { showToast('⚠ You must actually visit the Linkvertise page!'); return; }
-      if (!_state.lv2ReadyToComplete) { showToast('⚠ Finish the Linkvertise page fully!'); return; }
-
-      const expectedHash = hashToken(_state.lv2Token, _salt);
-      if (token !== _state.lv2Token || _lv2Hash !== expectedHash) {
-        _state.tamperCount++;
-        showToast('🔴 Invalid token — bypass detected');
-        return;
-      }
-
-      _state.lv2Done = true;
-      _state.activeTask = 0;
-      _state.lv2Token = null;
-      _lv2Hash = null;
-      onLV2Complete();
-    },
-
-    isDone: function() { return _state.lv1Done && _state.lv2Done; },
-    getToken1: function() { return _state.lv1Token; },
-    getToken2: function() { return _state.lv2Token; },
-  };
-})();
-
-// Show a full-page block overlay if tampering detected
-function showSecurityBlock() {
-  let overlay = document.getElementById('secBlock');
-  if (!overlay) {
-    overlay = document.createElement('div');
-    overlay.id = 'secBlock';
-    overlay.style.cssText = 'position:fixed;inset:0;background:#050810;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:Orbitron,monospace;text-align:center;padding:40px';
-    overlay.innerHTML = `
-      <div style="font-size:48px;margin-bottom:20px">🔴</div>
-      <div style="font-size:18px;font-weight:900;color:#ff3e8a;letter-spacing:2px;margin-bottom:12px">SECURITY BLOCK</div>
-      <div style="font-size:13px;color:#4a5568;max-width:320px;line-height:1.8">Bypass attempt detected.<br>Please reload the page and complete the tasks normally.</div>
-      <button onclick="location.reload()" style="margin-top:28px;padding:12px 28px;border-radius:8px;background:linear-gradient(135deg,#ff3e8a,#cc1a60);color:#fff;border:none;font-family:Orbitron,monospace;font-size:12px;font-weight:700;letter-spacing:1.5px;cursor:pointer">RELOAD PAGE</button>
-    `;
-    document.body.appendChild(overlay);
-  }
-}
-
-// =============================================================
-//  TASK 1 — Linkvertise #1 (button click handlers)
-//  NOTE: "I Completed It" button passes the live token
-//        which was generated at click-time — not guessable
-// =============================================================
-function onLV1Click() {
-  _S.startLV1();
-  document.getElementById('lv1Hint').style.display = 'flex';
-  document.getElementById('lv1HintText').textContent = 'Complete ALL steps on the Linkvertise page, then come back here…';
-  const btn = document.getElementById('lv1Btn');
-  btn.style.opacity = '0.6';
-  btn.style.pointerEvents = 'none';
-  btn.innerHTML = btn.innerHTML.replace('OPEN LINKVERTISE #1', 'OPENED — GO COMPLETE IT ✓');
-}
-
-function completeLV1() {
-  const tok = _S.getToken1();
-  _S.finishLV1(tok);
-}
-
-function onLV1Complete() {
+// ================================================================
+//  RESTORE TASK 1 VISUALS ON RELOAD  (no security bypass —
+//  _S.restoreTask1Done() sets the in-memory flag too)
+// ================================================================
+function restoreTask1UI() {
   document.getElementById('card1').classList.add('completed');
   document.getElementById('badge1').style.display = 'inline-flex';
   document.getElementById('lv1Hint').style.display = 'none';
   document.getElementById('lv1DoneBtn').style.display = 'none';
-  const n1 = document.getElementById('tnum1');
-  n1.classList.add('done-num'); n1.textContent = '✓';
-  const d1 = document.getElementById('dot1');
-  d1.classList.remove('active'); d1.classList.add('done'); d1.textContent = '✓';
+  const btn = document.getElementById('lv1Btn');
+  btn.style.opacity = '0.6'; btn.style.pointerEvents = 'none';
+  btn.innerHTML = btn.innerHTML.replace('OPEN LINKVERTISE #1','COMPLETED ✓');
+  const n1 = document.getElementById('tnum1'); n1.classList.add('done-num'); n1.textContent='✓';
+  const d1 = document.getElementById('dot1'); d1.classList.remove('active'); d1.classList.add('done'); d1.textContent='✓';
   document.getElementById('line1').classList.add('done');
   document.getElementById('dot2').classList.add('active');
   document.getElementById('card2').classList.remove('locked');
-  showToast('✓ Linkvertise #1 complete!');
 }
 
-// =============================================================
-//  TASK 2 — Linkvertise #2
-// =============================================================
+// ================================================================
+//  PAGE LOAD
+// ================================================================
+window.addEventListener('DOMContentLoaded', () => {
+  // Priority 1: a fully generated key exists
+  const saved = loadSavedKey();
+  if (saved) {
+    saved.expiry > Date.now() ? showSavedKey(saved) : showExpiredState(saved);
+    return;
+  }
+  // Priority 2: task 1 was completed before last refresh
+  const prog = loadProgress();
+  if (prog.t1) {
+    _S.restoreTask1Done();
+    restoreTask1UI();
+    showToast('✓ Task 1 restored — continue with Task 2!');
+  }
+});
+
+// ================================================================
+//  SECURITY MODULE
+// ================================================================
+const _S = (function() {
+  const st = {
+    lv1Token: null, lv1TabLeft: false, lv1AwayMs: 0,
+    lv1ReadyToComplete: false, lv1Done: false,
+    lv2Token: null, lv2TabLeft: false, lv2AwayMs: 0,
+    lv2ReadyToComplete: false, lv2Done: false,
+    activeTask: 0, blocked: false, tamperCount: 0,
+  };
+
+  function makeToken() {
+    const a = new Uint32Array(4); crypto.getRandomValues(a);
+    return Array.from(a).map(n => n.toString(36)).join('-');
+  }
+  function hashToken(tok, salt) {
+    let h = 0x811c9dc5;
+    const s = tok+'|'+salt;
+    for (let i=0;i<s.length;i++) { h^=s.charCodeAt(i); h=(h*0x01000193)>>>0; }
+    return h.toString(36);
+  }
+
+  let h1=null, h2=null;
+  const SALT = makeToken();
+  let leaveTime=0, awayTick=null;
+
+  function awayCountdown(n) {
+    const disp=document.getElementById('timerDisp'+n), bar=document.getElementById('timerBar'+n), wrap=document.getElementById('waitTimer'+n);
+    if (!wrap) return;
+    wrap.classList.add('active');
+    if (awayTick) clearInterval(awayTick);
+    awayTick = setInterval(() => {
+      const spent = (n===1?st.lv1AwayMs:st.lv2AwayMs) + (Date.now()-leaveTime);
+      const rem   = Math.max(0, LV_REQUIRED_AWAY_MS - spent);
+      const secs  = Math.ceil(rem/1000);
+      const pct   = Math.min(100,(spent/LV_REQUIRED_AWAY_MS)*100);
+      if (disp) { disp.textContent=secs; disp.classList.toggle('urgent',secs<=10); }
+      if (bar)  { bar.style.width=pct+'%'; bar.classList.toggle('urgent',secs<=10); }
+      if (rem<=0) { clearInterval(awayTick); awayTick=null; wrap.classList.remove('active'); }
+    }, 250);
+  }
+
+  // Devtools check
+  let dtOpen=false;
+  setInterval(()=>{
+    const dw=window.outerWidth-window.innerWidth, dh=window.outerHeight-window.innerHeight;
+    if(dw>160||dh>160){if(!dtOpen){dtOpen=true;st.tamperCount++;if(st.tamperCount>=2){st.blocked=true;showSecurityBlock();}}}
+    else dtOpen=false;
+  },1000);
+
+  // Visibility API
+  document.addEventListener('visibilitychange',()=>{
+    if (document.hidden) {
+      if (st.activeTask===1&&st.lv1Token&&!st.lv1Done) { leaveTime=Date.now(); st.lv1TabLeft=true; awayCountdown(1); }
+      if (st.activeTask===2&&st.lv2Token&&!st.lv2Done) { leaveTime=Date.now(); st.lv2TabLeft=true; awayCountdown(2); }
+    } else {
+      if (awayTick) { clearInterval(awayTick); awayTick=null; }
+
+      if (st.activeTask===1&&st.lv1TabLeft&&!st.lv1Done) {
+        st.lv1AwayMs += Date.now()-leaveTime;
+        document.getElementById('waitTimer1').classList.remove('active');
+        if (st.lv1AwayMs >= LV_REQUIRED_AWAY_MS) { st.lv1ReadyToComplete=true; showDone(1); }
+        else { const n=Math.ceil((LV_REQUIRED_AWAY_MS-st.lv1AwayMs)/1000); showToast(`⚠ ${n}s more on Linkvertise needed!`,'var(--accent2)'); document.getElementById('lv1Hint').style.display='flex'; document.getElementById('lv1HintText').textContent=`Go back — ${n}s more needed!`; }
+      }
+      if (st.activeTask===2&&st.lv2TabLeft&&!st.lv2Done) {
+        st.lv2AwayMs += Date.now()-leaveTime;
+        document.getElementById('waitTimer2').classList.remove('active');
+        if (st.lv2AwayMs >= LV_REQUIRED_AWAY_MS) { st.lv2ReadyToComplete=true; showDone(2); }
+        else { const n=Math.ceil((LV_REQUIRED_AWAY_MS-st.lv2AwayMs)/1000); showToast(`⚠ ${n}s more on Linkvertise needed!`,'var(--accent2)'); document.getElementById('lv2Hint').style.display='flex'; document.getElementById('lv2HintText').textContent=`Go back — ${n}s more needed!`; }
+      }
+    }
+  });
+
+  function showDone(n) {
+    document.getElementById('lv'+n+'DoneBtn').style.display='inline-flex';
+    document.getElementById('lv'+n+'Hint').style.display='flex';
+    document.getElementById('lv'+n+'HintText').textContent='✓ Time done! Click "I Completed It" ↑';
+    showToast('✓ Time complete! Click "I Completed It"');
+  }
+
+  return {
+    restoreTask1Done() { st.lv1Done=true; st.activeTask=0; },
+
+    startLV1() {
+      if(st.blocked||st.lv1Done)return;
+      st.activeTask=1; st.lv1Token=makeToken(); h1=hashToken(st.lv1Token,SALT);
+      st.lv1TabLeft=false; st.lv1ReadyToComplete=false; st.lv1AwayMs=0;
+    },
+    finishLV1(tok) {
+      if(st.blocked){showToast('🔴 Security check failed','var(--accent2)');return;}
+      if(st.lv1Done)return;
+      if(!st.lv1Token){showToast('⚠ Open the Linkvertise link first!','var(--accent2)');return;}
+      if(!st.lv1TabLeft){showToast('⚠ You must visit the Linkvertise page first!','var(--accent2)');return;}
+      if(!st.lv1ReadyToComplete){showToast('⚠ Spend more time on Linkvertise!','var(--accent2)');return;}
+      if(tok!==st.lv1Token||hashToken(st.lv1Token,SALT)!==h1){st.tamperCount++;showToast('🔴 Invalid token','var(--accent2)');return;}
+      st.lv1Done=true; st.activeTask=0; st.lv1Token=null; h1=null;
+      saveProgress(true);  // ← PERSIST across refresh
+      onLV1Complete();
+    },
+
+    startLV2() {
+      if(st.blocked)return;
+      if(!st.lv1Done){showToast('⚠ Complete Task 1 first!','var(--accent2)');return;}
+      if(st.lv2Done)return;
+      st.activeTask=2; st.lv2Token=makeToken(); h2=hashToken(st.lv2Token,SALT);
+      st.lv2TabLeft=false; st.lv2ReadyToComplete=false; st.lv2AwayMs=0;
+    },
+    finishLV2(tok) {
+      if(st.blocked){showToast('🔴 Security check failed','var(--accent2)');return;}
+      if(st.lv2Done)return;
+      if(!st.lv2Token){showToast('⚠ Open the Linkvertise link first!','var(--accent2)');return;}
+      if(!st.lv2TabLeft){showToast('⚠ You must visit the Linkvertise page first!','var(--accent2)');return;}
+      if(!st.lv2ReadyToComplete){showToast('⚠ Spend more time on Linkvertise!','var(--accent2)');return;}
+      if(tok!==st.lv2Token||hashToken(st.lv2Token,SALT)!==h2){st.tamperCount++;showToast('🔴 Invalid token','var(--accent2)');return;}
+      st.lv2Done=true; st.activeTask=0; st.lv2Token=null; h2=null;
+      onLV2Complete();
+    },
+
+    isDone()    { return st.lv1Done&&st.lv2Done; },
+    getToken1() { return st.lv1Token; },
+    getToken2() { return st.lv2Token; },
+  };
+})();
+
+function showSecurityBlock() {
+  if (document.getElementById('secBlock')) return;
+  const o=document.createElement('div'); o.id='secBlock';
+  o.style.cssText='position:fixed;inset:0;background:#050810;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:Orbitron,monospace;text-align:center;padding:40px';
+  o.innerHTML=`<div style="font-size:48px;margin-bottom:20px">🔴</div><div style="font-size:18px;font-weight:900;color:#ff3e8a;letter-spacing:2px;margin-bottom:12px">SECURITY BLOCK</div><div style="font-size:13px;color:#4a5568;max-width:320px;line-height:1.8">Bypass attempt detected.<br>Reload and complete tasks normally.</div><button onclick="location.reload()" style="margin-top:28px;padding:12px 28px;border-radius:8px;background:linear-gradient(135deg,#ff3e8a,#cc1a60);color:#fff;border:none;font-family:Orbitron,monospace;font-size:12px;font-weight:700;letter-spacing:1.5px;cursor:pointer">RELOAD PAGE</button>`;
+  document.body.appendChild(o);
+}
+
+// ================================================================
+//  TASK BUTTON HANDLERS
+// ================================================================
+function onLV1Click() {
+  _S.startLV1();
+  document.getElementById('lv1Hint').style.display='flex';
+  document.getElementById('lv1HintText').textContent='Complete ALL steps on Linkvertise — timer counting your time away…';
+  const b=document.getElementById('lv1Btn'); b.style.opacity='0.6'; b.style.pointerEvents='none';
+  b.innerHTML=b.innerHTML.replace('OPEN LINKVERTISE #1','OPENED — GO COMPLETE IT ✓');
+}
+function completeLV1() { _S.finishLV1(_S.getToken1()); }
+
+function onLV1Complete() {
+  document.getElementById('card1').classList.add('completed');
+  document.getElementById('badge1').style.display='inline-flex';
+  document.getElementById('lv1Hint').style.display='none';
+  document.getElementById('lv1DoneBtn').style.display='none';
+  const n1=document.getElementById('tnum1'); n1.classList.add('done-num'); n1.textContent='✓';
+  const d1=document.getElementById('dot1'); d1.classList.remove('active'); d1.classList.add('done'); d1.textContent='✓';
+  document.getElementById('line1').classList.add('done');
+  document.getElementById('dot2').classList.add('active');
+  document.getElementById('card2').classList.remove('locked');
+  showToast('✓ Task 1 complete & saved! Now do Task 2.');
+}
+
 function onLV2Click() {
   _S.startLV2();
-  document.getElementById('lv2Hint').style.display = 'flex';
-  document.getElementById('lv2HintText').textContent = 'Complete ALL steps on the Linkvertise page, then come back here…';
-  const btn = document.getElementById('lv2Btn');
-  btn.style.opacity = '0.6';
-  btn.style.pointerEvents = 'none';
-  btn.innerHTML = btn.innerHTML.replace('OPEN LINKVERTISE #2', 'OPENED — GO COMPLETE IT ✓');
+  document.getElementById('lv2Hint').style.display='flex';
+  document.getElementById('lv2HintText').textContent='Complete ALL steps on Linkvertise — timer counting your time away…';
+  const b=document.getElementById('lv2Btn'); b.style.opacity='0.6'; b.style.pointerEvents='none';
+  b.innerHTML=b.innerHTML.replace('OPEN LINKVERTISE #2','OPENED — GO COMPLETE IT ✓');
 }
-
-function completeLV2() {
-  const tok = _S.getToken2();
-  _S.finishLV2(tok);
-}
+function completeLV2() { _S.finishLV2(_S.getToken2()); }
 
 function onLV2Complete() {
   document.getElementById('card2').classList.add('completed');
-  document.getElementById('badge2').style.display = 'inline-flex';
-  document.getElementById('lv2Hint').style.display = 'none';
-  document.getElementById('lv2DoneBtn').style.display = 'none';
-  const n2 = document.getElementById('tnum2');
-  n2.classList.add('done-num'); n2.textContent = '✓';
-  const d2 = document.getElementById('dot2');
-  d2.classList.remove('active'); d2.classList.add('done'); d2.textContent = '✓';
+  document.getElementById('badge2').style.display='inline-flex';
+  document.getElementById('lv2Hint').style.display='none';
+  document.getElementById('lv2DoneBtn').style.display='none';
+  const n2=document.getElementById('tnum2'); n2.classList.add('done-num'); n2.textContent='✓';
+  const d2=document.getElementById('dot2'); d2.classList.remove('active'); d2.classList.add('done'); d2.textContent='✓';
   document.getElementById('line2').classList.add('done');
   document.getElementById('dot3').classList.add('active');
-  showToast('✓ Linkvertise #2 complete! Generating key…');
-  setTimeout(() => generateKey(), 800);
+  showToast('✓ Task 2 complete! Generating key…');
+  setTimeout(generateKey, 800);
 }
 
-// =============================================================
+// ================================================================
 //  KEY GENERATION
-// =============================================================
-function getDaySeed() {
-  const n = new Date();
-  return `${n.getUTCFullYear()}${String(n.getUTCMonth()+1).padStart(2,'0')}${String(n.getUTCDate()).padStart(2,'0')}`;
-}
-
-function djb2(str) {
-  let h = 5381;
-  for (let i = 0; i < str.length; i++) {
-    h = (((h << 5) + h) ^ str.charCodeAt(i)) >>> 0;
-  }
-  return h;
-}
-
-function seg(raw) {
-  return djb2(raw).toString(36).toUpperCase().padStart(7,'0').slice(-5);
-}
-
-function buildKey(secret, day, uid5) {
-  const base = `${secret}|${day}|${uid5}`;
-  const p2 = seg(base + '2');
-  const p3 = seg(base + '3');
-  const p4 = seg(base); // checksum
-  return `AF-${uid5}-${p2}-${p3}-${p4}`;
-}
-
-function getUID() {
-  // Use localStorage so same UID persists across tabs (tied to this browser)
-  let uid = localStorage.getItem('af_uid');
-  if (!uid) {
-    const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    uid = '';
-    for (let i = 0; i < 5; i++) uid += chars[Math.floor(Math.random()*chars.length)];
-    localStorage.setItem('af_uid', uid);
-  }
-  return uid;
-}
+// ================================================================
+function getDaySeed() { const n=new Date(); return `${n.getUTCFullYear()}${String(n.getUTCMonth()+1).padStart(2,'0')}${String(n.getUTCDate()).padStart(2,'0')}`; }
+function djb2(s)      { let h=5381; for(let i=0;i<s.length;i++)h=(((h<<5)+h)^s.charCodeAt(i))>>>0; return h; }
+function seg(r)       { return djb2(r).toString(36).toUpperCase().padStart(7,'0').slice(-5); }
+function buildKey(sec,day,uid){ const b=`${sec}|${day}|${uid}`; return `AF-${uid}-${seg(b+'2')}-${seg(b+'3')}-${seg(b)}`; }
+function getUID()     { let u=localStorage.getItem('af_uid'); if(!u){const c='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';u=Array.from({length:5},()=>c[Math.floor(Math.random()*c.length)]).join('');localStorage.setItem('af_uid',u);} return u; }
 
 function generateKey() {
   if (!_S.isDone()) return;
-
-  const uid = getUID();
-  const day = getDaySeed();
-  generatedKey = buildKey(SECRET, day, uid);
-
-  // ── AUTO-SAVE KEY ──────────────────────────────────────────
-  const expiry = Date.now() + 24 * 60 * 60 * 1000; // 24 hours
-  const payload = { key: generatedKey, expiry, generated: Date.now() };
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
-  } catch(e) {}
-  // ──────────────────────────────────────────────────────────
-
+  generatedKey = buildKey(SECRET, getDaySeed(), getUID());
+  const expiry = Date.now()+24*60*60*1000;
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify({key:generatedKey,expiry,generated:Date.now()})); } catch(e){}
+  clearProgress(); // progress no longer needed once key is saved
   document.getElementById('keyDisplay').textContent = generatedKey;
-  const kc = document.getElementById('keyCard');
-  kc.classList.add('visible');
-  document.getElementById('dot3').classList.remove('active');
-  document.getElementById('dot3').classList.add('done');
-
+  const kc = document.getElementById('keyCard'); kc.classList.add('visible');
+  document.getElementById('dot3').classList.remove('active'); document.getElementById('dot3').classList.add('done');
   launchParticles();
-  showToast('🎉 Key generated & saved automatically!');
-  setTimeout(() => kc.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+  showToast('🎉 Key generated & saved!');
+  setTimeout(()=>kc.scrollIntoView({behavior:'smooth',block:'center'}),100);
 }
 
-// =============================================================
-//  COPY HELPERS
-// =============================================================
-function copyKey() {
-  if (!generatedKey) return;
-  doCopy(generatedKey, 'keyDisplay');
-}
-
+// ================================================================
+//  COPY
+// ================================================================
+function copyKey() { if(generatedKey) doCopy(generatedKey,'keyDisplay'); }
 function copySavedKey() {
-  // Don't allow copying an expired key
-  const saved = loadSavedKey();
-  if (!saved || saved.expiry <= Date.now()) {
-    showToast('🔴 Key expired — click Renew Key to get a new one');
-    return;
-  }
-  const el = document.getElementById('savedKeyDisplay');
-  doCopy(el.textContent, 'savedKeyDisplay');
+  const s=loadSavedKey(); if(!s||s.expiry<=Date.now()){showToast('🔴 Key expired','var(--accent2)');return;}
+  doCopy(document.getElementById('savedKeyDisplay').textContent,'savedKeyDisplay');
 }
-
-function doCopy(text, elId) {
-  navigator.clipboard.writeText(text).then(() => {
+function doCopy(text,elId) {
+  navigator.clipboard.writeText(text).then(()=>{
     showToast('✓ Copied to clipboard!');
-    const d = document.getElementById(elId);
-    d.style.borderColor = 'rgba(0,255,136,.9)';
-    d.style.boxShadow = '0 0 40px rgba(0,255,136,.2)';
-    setTimeout(() => { d.style.borderColor = ''; d.style.boxShadow = ''; }, 1200);
-  }).catch(() => showToast('Select key and press Ctrl+C'));
+    const d=document.getElementById(elId); d.style.borderColor='rgba(0,255,136,.9)'; d.style.boxShadow='0 0 40px rgba(0,255,136,.2)';
+    setTimeout(()=>{d.style.borderColor='';d.style.boxShadow='';},1200);
+  }).catch(()=>showToast('Select key and press Ctrl+C'));
 }
 
-// =============================================================
+// ================================================================
 //  RENEW MODAL
-// =============================================================
-function openRenewModal() {
-  document.getElementById('renewModal').classList.add('open');
-}
-
-function closeModal() {
-  document.getElementById('renewModal').classList.remove('open');
-}
-
+// ================================================================
+function openRenewModal() { document.getElementById('renewModal').classList.add('open'); }
+function closeModal()     { document.getElementById('renewModal').classList.remove('open'); }
 function confirmRenew() {
-  closeModal();
-
-  // Clear saved key + uid so they get a fresh key
-  clearSavedKey();
-  localStorage.removeItem('af_uid');
-  if (expiryInterval) clearInterval(expiryInterval);
-
-  // Reload the page — this resets all sealed security state cleanly
-  // (can't reset the IIFE closure without a reload anyway)
-  showToast('🔄 Reloading — complete tasks for a new key…');
-  setTimeout(() => location.reload(), 1000);
+  closeModal(); clearSavedKey(); clearProgress(); localStorage.removeItem('af_uid');
+  if(expiryInterval)clearInterval(expiryInterval);
+  showToast('🔄 Reloading…'); setTimeout(()=>location.reload(),1000);
 }
 
-// =============================================================
+// ================================================================
 //  PARTICLES
-// =============================================================
+// ================================================================
 function launchParticles() {
-  const colors = ['#00d4ff','#ff3e8a','#00ff88','#7c3aed','#ffd700'];
-  for (let i = 0; i < 60; i++) {
-    setTimeout(() => {
-      const p = document.createElement('div');
-      p.className = 'particle';
-      p.style.cssText = `left:${Math.random()*100}vw;top:${Math.random()*60}vh;width:${4+Math.random()*8}px;height:${4+Math.random()*8}px;background:${colors[Math.floor(Math.random()*colors.length)]};animation-delay:${Math.random()*.4}s;animation-duration:${1.5+Math.random()}s;`;
-      document.body.appendChild(p);
-      setTimeout(() => p.remove(), 2600);
-    }, i * 18);
-  }
+  const cols=['#00d4ff','#ff3e8a','#00ff88','#7c3aed','#ffd700'];
+  for(let i=0;i<60;i++) setTimeout(()=>{
+    const p=document.createElement('div'); p.className='particle';
+    p.style.cssText=`left:${Math.random()*100}vw;top:${Math.random()*60}vh;width:${4+Math.random()*8}px;height:${4+Math.random()*8}px;background:${cols[Math.floor(Math.random()*cols.length)]};animation-delay:${Math.random()*.4}s;animation-duration:${1.5+Math.random()}s;`;
+    document.body.appendChild(p); setTimeout(()=>p.remove(),2600);
+  },i*18);
 }
 </script>
 </body>
