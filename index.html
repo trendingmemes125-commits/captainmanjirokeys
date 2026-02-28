@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Key System — Anime Finals Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #050810; --card: #0d1528; --border: #1a2540;
+    --accent: #00d4ff; --accent2: #ff3e8a; --accent3: #7c3aed;
+    --text: #e2e8f0; --muted: #4a5568; --success: #00ff88;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Rajdhani', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background-image: linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px; animation: gridMove 20s linear infinite; pointer-events: none; z-index: 0;
+  }
+  @keyframes gridMove { 0% { background-position: 0 0; } 100% { background-position: 40px 40px; } }
+  .orb { position: fixed; border-radius: 50%; filter: blur(80px); opacity: 0.12; pointer-events: none; z-index: 0; animation: orbFloat 8s ease-in-out infinite; }
+  .orb1 { width: 400px; height: 400px; background: var(--accent); top: -100px; left: -100px; }
+  .orb2 { width: 300px; height: 300px; background: var(--accent2); bottom: -50px; right: -50px; animation-delay: 3s; }
+  .orb3 { width: 250px; height: 250px; background: var(--accent3); top: 50%; right: 20%; animation-delay: 5s; }
+  @keyframes orbFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-30px); } }
+  .container { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; padding: 40px 20px 80px; }
+  .header { text-align: center; margin-bottom: 48px; animation: fadeDown 0.8s ease both; }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+  .logo-badge { display: inline-block; background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(124,58,237,0.1)); border: 1px solid rgba(0,212,255,0.2); border-radius: 50px; padding: 6px 20px; font-family: 'Orbitron', monospace; font-size: 11px; letter-spacing: 3px; color: var(--accent); margin-bottom: 20px; }
+  h1 { font-family: 'Orbitron', monospace; font-size: clamp(28px, 5vw, 42px); font-weight: 900; background: linear-gradient(135deg, #fff 0%, var(--accent) 50%, var(--accent2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 12px; }
+  .subtitle { color: var(--muted); font-size: 15px; font-weight: 300; letter-spacing: 1px; }
+  .progress-bar { display: flex; align-items: center; justify-content: center; margin-bottom: 40px; animation: fadeUp 0.8s 0.2s ease both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .step-dot { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .dot { width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--border); background: var(--card); display: flex; align-items: center; justify-content: center; font-family: 'Orbitron', monospace; font-size: 13px; font-weight: 700; color: var(--muted); transition: all 0.4s; }
+  .dot.active { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 20px rgba(0,212,255,0.3); }
+  .dot.done { border-color: var(--success); background: rgba(0,255,136,0.1); color: var(--success); box-shadow: 0 0 15px rgba(0,255,136,0.2); }
+  .step-line { width: 80px; height: 2px; background: var(--border); margin-bottom: 22px; position: relative; overflow: hidden; }
+  .step-line.done::after { content: ''; position: absolute; inset: 0; background: var(--success); animation: lineGrow 0.5s ease both; }
+  @keyframes lineGrow { from { transform: scaleX(0); transform-origin: left; } to { transform: scaleX(1); } }
+  .dot-label { font-size: 11px; color: var(--muted); text-align: center; letter-spacing: 0.5px; white-space: nowrap; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-bottom: 20px; position: relative; overflow: hidden; animation: fadeUp 0.8s ease both; transition: border-color 0.3s; }
+  .card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,212,255,0.03), transparent 50%); pointer-events: none; }
+  .card.locked { opacity: 0.4; pointer-events: none; }
+  .card.completed { border-color: rgba(0,255,136,0.3); background: linear-gradient(135deg, rgba(0,255,136,0.04), var(--card)); }
+  .card-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+  .task-num { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(124,58,237,0.15)); border: 1px solid rgba(0,212,255,0.2); display: flex; align-items: center; justify-content: center; font-family: 'Orbitron', monospace; font-size: 16px; font-weight: 900; color: var(--accent); flex-shrink: 0; transition: all 0.4s; }
+  .task-num.done-num { background: linear-gradient(135deg, rgba(0,255,136,0.15), rgba(0,255,136,0.05)); border-color: rgba(0,255,136,0.3); color: var(--success); }
+  .task-title { font-family: 'Orbitron', monospace; font-size: 14px; font-weight: 700; color: #fff; letter-spacing: 1px; }
+  .task-subtitle { font-size: 13px; color: var(--muted); margin-top: 3px; font-weight: 300; }
+  .cbadge { margin-left: auto; background: rgba(0,255,136,0.1); border: 1px solid rgba(0,255,136,0.3); border-radius: 20px; padding: 4px 12px; font-size: 11px; color: var(--success); font-family: 'Orbitron', monospace; letter-spacing: 1px; }
+  .task-desc { font-size: 14px; color: #94a3b8; line-height: 1.6; margin-bottom: 20px; font-weight: 300; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; border-radius: 8px; font-family: 'Orbitron', monospace; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; cursor: pointer; border: none; transition: all 0.3s; text-decoration: none; }
+  .btn-discord { background: linear-gradient(135deg, #5865F2, #4752C4); color: #fff; box-shadow: 0 4px 20px rgba(88,101,242,0.3); }
+  .btn-discord:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(88,101,242,0.5); }
+  .btn-primary { background: linear-gradient(135deg, var(--accent), #0066ff); color: #000; box-shadow: 0 4px 20px rgba(0,212,255,0.3); }
+  .btn-primary:hover { transform: translateY(-2px); }
+  .btn-success { background: linear-gradient(135deg, var(--success), #00cc6a); color: #000; box-shadow: 0 4px 20px rgba(0,255,136,0.3); }
+  .btn-success:hover { transform: translateY(-2px); }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; }
+  .timer-wrap { display: flex; align-items: center; gap: 16px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; margin-bottom: 20px; }
+  .timer-display { font-family: 'Orbitron', monospace; font-size: 32px; font-weight: 900; color: var(--accent); min-width: 60px; text-align: center; text-shadow: 0 0 20px rgba(0,212,255,0.5); transition: color 0.3s; }
+  .timer-display.urgent { color: var(--accent2); text-shadow: 0 0 20px rgba(255,62,138,0.5); }
+  .timer-bar-wrap { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .timer-bar { height: 100%; background: linear-gradient(90deg, var(--accent), #0066ff); border-radius: 3px; transition: width 1s linear; width: 100%; }
+  .timer-bar.urgent { background: linear-gradient(90deg, var(--accent2), #ff6b00); }
+  .timer-label { font-size: 11px; color: var(--muted); font-family: 'Orbitron', monospace; letter-spacing: 1px; }
+  .key-card { background: linear-gradient(135deg, rgba(0,255,136,0.05), rgba(0,212,255,0.05)); border: 1px solid rgba(0,255,136,0.3); border-radius: 16px; padding: 32px; text-align: center; display: none; animation: keyReveal 0.8s ease both; }
+  @keyframes keyReveal { from { opacity: 0; transform: scale(0.9) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+  .key-card.visible { display: block; }
+  .key-label { font-family: 'Orbitron', monospace; font-size: 11px; letter-spacing: 3px; color: var(--success); margin-bottom: 16px; }
+  .key-display { font-family: 'Orbitron', monospace; font-size: clamp(13px, 2.5vw, 18px); font-weight: 700; color: #fff; background: rgba(0,0,0,0.6); border: 1px solid rgba(0,255,136,0.3); border-radius: 10px; padding: 18px 24px; margin-bottom: 12px; letter-spacing: 2px; word-break: break-all; text-shadow: 0 0 20px rgba(0,255,136,0.3); cursor: pointer; transition: all 0.3s; user-select: all; }
+  .key-display:hover { border-color: rgba(0,255,136,0.7); box-shadow: 0 0 30px rgba(0,255,136,0.15); }
+  .copy-hint { font-size: 11px; color: var(--accent); letter-spacing: 1px; margin-bottom: 16px; font-family: 'Orbitron', monospace; }
+  .key-note { font-size: 13px; color: var(--muted); margin-bottom: 20px; line-height: 1.6; }
+  .expiry-info { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,62,138,0.1); border: 1px solid rgba(255,62,138,0.2); border-radius: 20px; padding: 4px 14px; font-size: 12px; color: var(--accent2); letter-spacing: 1px; }
+  .how-to { background: rgba(0,212,255,0.05); border: 1px solid rgba(0,212,255,0.15); border-radius: 12px; padding: 16px 20px; margin-top: 20px; text-align: left; }
+  .how-to-title { font-family: 'Orbitron', monospace; font-size: 11px; letter-spacing: 2px; color: var(--accent); margin-bottom: 10px; }
+  .how-to ol { padding-left: 18px; }
+  .how-to li { font-size: 13px; color: #94a3b8; line-height: 2.2; }
+  .how-to strong { color: #fff; }
+  .particle { position: fixed; pointer-events: none; z-index: 100; border-radius: 2px; animation: particleFall 2s ease-out forwards; }
+  @keyframes particleFall { 0% { opacity: 1; transform: translateY(0) rotate(0deg); } 100% { opacity: 0; transform: translateY(400px) rotate(720deg); } }
+  .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px); background: rgba(0,0,0,0.8); border: 1px solid rgba(0,255,136,0.4); backdrop-filter: blur(10px); border-radius: 10px; padding: 12px 24px; font-family: 'Orbitron', monospace; font-size: 12px; color: var(--success); letter-spacing: 1px; z-index: 200; transition: transform 0.4s ease; white-space: nowrap; }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  .icon { width: 16px; height: 16px; fill: currentColor; }
+</style>
+</head>
+<body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<div class="container">
+
+  <div class="header">
+    <div class="logo-badge">⚔ Anime Finals Hub</div>
+    <h1>KEY SYSTEM</h1>
+    <p class="subtitle">Complete 2 tasks to generate your free access key</p>
+  </div>
+
+  <div class="progress-bar">
+    <div class="step-dot">
+      <div class="dot active" id="dot1">1</div>
+      <span class="dot-label">Discord</span>
+    </div>
+    <div class="step-line" id="line1"></div>
+    <div class="step-dot">
+      <div class="dot" id="dot2">2</div>
+      <span class="dot-label">Wait</span>
+    </div>
+    <div class="step-line" id="line2"></div>
+    <div class="step-dot">
+      <div class="dot" id="dot3">✓</div>
+      <span class="dot-label">Key Ready</span>
+    </div>
+  </div>
+
+  <!-- TASK 1 -->
+  <div class="card" id="card1" style="animation-delay:0.3s">
+    <div class="card-header">
+      <div class="task-num" id="tnum1">1</div>
+      <div>
+        <div class="task-title">JOIN OUR DISCORD</div>
+        <div class="task-subtitle">Task 1 of 2 — Required</div>
+      </div>
+      <div class="cbadge" id="badge1" style="display:none">✓ DONE</div>
+    </div>
+    <p class="task-desc">Join the official Anime Finals Discord server. Click the button, join, then come back and click <strong style="color:#fff">I Joined</strong>.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+      <a href="https://discord.gg/YourInviteHere" target="_blank" class="btn btn-discord" onclick="onDiscordClick()">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.003.024.018.046.041.058a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .041-.059c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+        JOIN DISCORD
+      </a>
+      <button class="btn btn-primary" id="joinedBtn" onclick="completeDiscord()" style="display:none">
+        ✓ I JOINED
+      </button>
+    </div>
+  </div>
+
+  <!-- TASK 2 -->
+  <div class="card locked" id="card2" style="animation-delay:0.5s">
+    <div class="card-header">
+      <div class="task-num" id="tnum2">2</div>
+      <div>
+        <div class="task-title">WAIT TIMER</div>
+        <div class="task-subtitle">Task 2 of 2 — Anti-Bot Verification</div>
+      </div>
+      <div class="cbadge" id="badge2" style="display:none">✓ DONE</div>
+    </div>
+    <p class="task-desc">Stay on this page for <strong style="color:var(--accent)">30 seconds</strong>. Timer starts automatically after Task 1.</p>
+    <div class="timer-wrap">
+      <div>
+        <div class="timer-display" id="timerNum">30</div>
+        <div class="timer-label">SECONDS LEFT</div>
+      </div>
+      <div class="timer-bar-wrap">
+        <div class="timer-bar" id="timerBar"></div>
+      </div>
+    </div>
+    <button class="btn btn-success" id="generateBtn" onclick="generateKey()" disabled>
+      ⚡ GENERATE MY KEY
+    </button>
+  </div>
+
+  <!-- KEY OUTPUT -->
+  <div class="key-card" id="keyCard">
+    <div class="key-label">🔑 Your Access Key</div>
+    <div class="key-display" id="keyDisplay" onclick="copyKey()">—</div>
+    <p class="copy-hint">↑ CLICK KEY TO COPY TO CLIPBOARD</p>
+    <p class="key-note">Paste this key <strong style="color:#fff">exactly</strong> into the hub. Valid for <strong style="color:#fff">24 hours</strong> from generation.</p>
+    <div class="expiry-info">⏳ Valid for 24 hours</div>
+    <div class="how-to">
+      <div class="how-to-title">HOW TO USE YOUR KEY</div>
+      <ol>
+        <li>Click the key above to <strong>copy it</strong></li>
+        <li>Open <strong>Anime Finals Hub</strong> in Roblox</li>
+        <li><strong>Paste</strong> the key into the Key textbox</li>
+        <li>Press Enter — you're in! ✓</li>
+      </ol>
+    </div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// =============================================================
+//  SHARED SECRET — must match exactly what's in the Lua script
+//  Change this string to anything you want, keep it private
+// =============================================================
+const SECRET = "AnimeFinals2025XK9";
+
+let discordClicked = false;
+let discordDone = false;
+let timerDone = false;
+let generatedKey = null;
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function onDiscordClick() {
+  discordClicked = true;
+  setTimeout(() => {
+    document.getElementById('joinedBtn').style.display = 'inline-flex';
+  }, 2000); // Show "I Joined" after 2s
+}
+
+function completeDiscord() {
+  if (!discordClicked) { showToast('⚠ Click JOIN DISCORD first!'); return; }
+  discordDone = true;
+
+  document.getElementById('card1').classList.add('completed');
+  document.getElementById('badge1').style.display = 'inline-flex';
+  const n1 = document.getElementById('tnum1');
+  n1.classList.add('done-num'); n1.textContent = '✓';
+  const d1 = document.getElementById('dot1');
+  d1.classList.remove('active'); d1.classList.add('done'); d1.textContent = '✓';
+  document.getElementById('line1').classList.add('done');
+  document.getElementById('dot2').classList.add('active');
+  document.getElementById('card2').classList.remove('locked');
+
+  showToast('✓ Discord task complete!');
+  startTimer();
+}
+
+function startTimer() {
+  let remaining = 30;
+  const numEl = document.getElementById('timerNum');
+  const barEl = document.getElementById('timerBar');
+  const iv = setInterval(() => {
+    remaining--;
+    numEl.textContent = remaining;
+    barEl.style.width = (remaining / 30 * 100) + '%';
+    if (remaining <= 10) { numEl.classList.add('urgent'); barEl.classList.add('urgent'); }
+    if (remaining <= 0) {
+      clearInterval(iv);
+      timerDone = true;
+      numEl.textContent = '0';
+      barEl.style.width = '0%';
+      finishTimer();
+    }
+  }, 1000);
+}
+
+function finishTimer() {
+  document.getElementById('card2').classList.add('completed');
+  document.getElementById('badge2').style.display = 'inline-flex';
+  const n2 = document.getElementById('tnum2');
+  n2.classList.add('done-num'); n2.textContent = '✓';
+  document.getElementById('generateBtn').removeAttribute('disabled');
+  const d2 = document.getElementById('dot2');
+  d2.classList.remove('active'); d2.classList.add('done'); d2.textContent = '✓';
+  document.getElementById('line2').classList.add('done');
+  document.getElementById('dot3').classList.add('active');
+  showToast('✓ Timer done! Generate your key.');
+}
+
+// =============================================================
+//  KEY GENERATION — deterministic hash, same logic in Lua
+//  Key = AF-XXXXX-XXXXX-XXXXX-XXXXX
+//  Built from: SECRET + UTC date (YYYYMMDD) + random uid
+//  The Lua script recomputes the same hash and compares
+// =============================================================
+function getDaySeed() {
+  const n = new Date();
+  return `${n.getUTCFullYear()}${String(n.getUTCMonth()+1).padStart(2,'0')}${String(n.getUTCDate()).padStart(2,'0')}`;
+}
+
+// djb2-style hash → unsigned 32-bit int
+function djb2(str) {
+  let h = 5381;
+  for (let i = 0; i < str.length; i++) {
+    h = (((h << 5) + h) ^ str.charCodeAt(i)) >>> 0;
+  }
+  return h;
+}
+
+function seg(raw) {
+  return djb2(raw).toString(36).toUpperCase().padStart(7,'0').slice(-5);
+}
+
+function buildKey(secret, day, uid5) {
+  // uid5 is embedded as segment 1 (visible, used by Lua to verify)
+  // p2 = seg(base + "2"), p3 = seg(base + "3"), p4 = checksum
+  const base = `${secret}|${day}|${uid5}`;
+  const p2 = seg(base + '2');
+  const p3 = seg(base + '3');
+  const p4 = seg(base); // checksum = seg(secret|day|uid5)
+  return `AF-${uid5}-${p2}-${p3}-${p4}`;
+}
+
+function getUID() {
+  let uid = sessionStorage.getItem('af_uid');
+  if (!uid) {
+    // Generate exactly 5 base-36 uppercase chars
+    uid = '';
+    const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    for (let i = 0; i < 5; i++) uid += chars[Math.floor(Math.random()*chars.length)];
+    sessionStorage.setItem('af_uid', uid);
+  }
+  return uid;
+}
+
+function generateKey() {
+  if (!discordDone || !timerDone) return;
+
+  const uid = getUID(); // exactly 5 base-36 chars
+  const day = getDaySeed();
+  generatedKey = buildKey(SECRET, day, uid);
+
+  document.getElementById('keyDisplay').textContent = generatedKey;
+  const kc = document.getElementById('keyCard');
+  kc.classList.add('visible');
+  document.getElementById('dot3').classList.remove('active');
+  document.getElementById('dot3').classList.add('done');
+
+  launchParticles();
+  showToast('🎉 Key generated! Copy it now.');
+  setTimeout(() => kc.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+}
+
+function copyKey() {
+  if (!generatedKey) return;
+  navigator.clipboard.writeText(generatedKey).then(() => {
+    showToast('✓ Copied to clipboard!');
+    const d = document.getElementById('keyDisplay');
+    d.style.borderColor = 'rgba(0,255,136,0.9)';
+    d.style.boxShadow = '0 0 40px rgba(0,255,136,0.2)';
+    setTimeout(() => { d.style.borderColor = ''; d.style.boxShadow = ''; }, 1200);
+  }).catch(() => {
+    showToast('Select key and press Ctrl+C');
+  });
+}
+
+function launchParticles() {
+  const colors = ['#00d4ff','#ff3e8a','#00ff88','#7c3aed','#ffd700'];
+  for (let i = 0; i < 60; i++) {
+    setTimeout(() => {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.cssText = `left:${Math.random()*100}vw;top:${Math.random()*60}vh;width:${4+Math.random()*8}px;height:${4+Math.random()*8}px;background:${colors[Math.floor(Math.random()*colors.length)]};animation-delay:${Math.random()*0.4}s;animation-duration:${1.5+Math.random()}s;`;
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 2600);
+    }, i * 18);
+  }
+}
+</script>
+</body>
+</html>
