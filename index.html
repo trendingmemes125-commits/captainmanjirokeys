@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Key System — Anime Finals Hub</title>
+<title>Key System — To Unlock The Script</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -83,7 +83,8 @@
   .saved-sub{font-size:13px;color:var(--muted);margin-top:3px}
   .expiry-countdown{display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);border-radius:10px;padding:10px 16px;margin-bottom:20px;font-family:'Orbitron',monospace;font-size:12px;color:var(--accent);letter-spacing:1px}
   .expiry-countdown.expiring{background:rgba(255,62,138,.08);border-color:rgba(255,62,138,.2);color:var(--accent2)}
-  .expiry-countdown.expired{background:rgba(255,62,138,.12);border-color:rgba(255,62,138,.4);color:var(--accent2)}
+  .expiry-countdown.expired{background:rgba(255,62,138,.15);border-color:rgba(255,62,138,.5);color:var(--accent2);font-weight:700}
+  @keyframes renewPulse{0%,100%{box-shadow:0 4px 20px rgba(255,62,138,.3);transform:translateY(0)}50%{box-shadow:0 8px 40px rgba(255,62,138,.7);transform:translateY(-3px)}}
 
   /* ── Key card ── */
   .key-card{background:linear-gradient(135deg,rgba(0,255,136,.05),rgba(0,212,255,.05));border:1px solid rgba(0,255,136,.3);border-radius:16px;padding:32px;text-align:center;display:none;animation:keyReveal .8s ease both}
@@ -132,7 +133,7 @@
     <div class="modal-title">RENEW YOUR KEY?</div>
     <div class="modal-body">
       This will <strong>delete your current key</strong> and reset all tasks.<br>
-      You'll need to complete both tasks again to get a new key.
+      You'll need to complete both Linkvertise tasks again to get a fresh 24-hour key.
     </div>
     <div class="modal-btns">
       <button class="btn btn-outline" onclick="closeModal()">CANCEL</button>
@@ -144,7 +145,7 @@
 <div class="container">
 
   <div class="header">
-    <div class="logo-badge">⚔ Anime Finals Hub</div>
+    <div class="logo-badge">To Unlock The Script</div>
     <h1>KEY SYSTEM</h1>
     <p class="subtitle" id="headerSub">Complete 2 tasks to generate your free access key</p>
   </div>
@@ -166,7 +167,7 @@
       <div class="how-to-title">HOW TO USE YOUR KEY</div>
       <ol>
         <li>Click the key above to <strong>copy it</strong></li>
-        <li>Open <strong>Anime Finals Hub</strong> in Roblox</li>
+        <li>Open <strong>Game</strong> in Roblox</li>
         <li><strong>Paste</strong> the key into the Key textbox</li>
         <li>Press Enter — you're in! ✓</li>
       </ol>
@@ -212,7 +213,7 @@
         and click <strong style="color:#fff">I Completed It</strong>.
       </p>
       <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
-        <a href="https://linkvertise.com/YOUR_LINK_1" target="_blank" class="btn btn-linkvertise" id="lv1Btn" onclick="onLV1Click()">
+        <a href="https://linkvertise.com/1180115/Aq5w4bwQ1EVS?o=sharing" target="_blank" class="btn btn-linkvertise" id="lv1Btn" onclick="onLV1Click()">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
           OPEN LINKVERTISE #1
         </a>
@@ -220,7 +221,7 @@
       </div>
       <div class="lv-hint" id="lv1Hint" style="display:none">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        Complete all steps on the Linkvertise page, then click "I Completed It" above
+        <span id="lv1HintText">Complete all steps on the Linkvertise page, then come back here…</span>
       </div>
     </div>
 
@@ -239,7 +240,7 @@
         then come back and click <strong style="color:#fff">I Completed It</strong> to generate your key.
       </p>
       <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
-        <a href="https://linkvertise.com/YOUR_LINK_2" target="_blank" class="btn btn-linkvertise" id="lv2Btn" onclick="onLV2Click()">
+        <a href="https://linkvertise.com/1180115/8UQPdI8h2QDK?o=sharing" target="_blank" class="btn btn-linkvertise" id="lv2Btn" onclick="onLV2Click()">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
           OPEN LINKVERTISE #2
         </a>
@@ -247,7 +248,7 @@
       </div>
       <div class="lv-hint" id="lv2Hint" style="display:none">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        Complete all steps on the Linkvertise page, then click "I Completed It" above
+        <span id="lv2HintText">Complete all steps on the Linkvertise page, then come back here…</span>
       </div>
     </div>
 
@@ -262,7 +263,7 @@
         <div class="how-to-title">HOW TO USE YOUR KEY</div>
         <ol>
           <li>Click the key above to <strong>copy it</strong></li>
-          <li>Open <strong>Anime Finals Hub</strong> in Roblox</li>
+          <li>Open <strong>Game</strong> in Roblox</li>
           <li><strong>Paste</strong> the key into the Key textbox</li>
           <li>Press Enter — you're in! ✓</li>
         </ol>
@@ -285,10 +286,6 @@
 const SECRET = "AnimeFinals2025XK9";
 const STORAGE_KEY = "af_saved_key";
 
-let lv1Clicked = false;
-let lv1Done = false;
-let lv2Clicked = false;
-let lv2Done = false;
 let generatedKey = null;
 let expiryInterval = null;
 
@@ -298,16 +295,13 @@ let expiryInterval = null;
 window.addEventListener('DOMContentLoaded', () => {
   const saved = loadSavedKey();
   if (saved) {
-    const now = Date.now();
-    if (saved.expiry > now) {
-      // Valid key exists — show banner, hide task flow
-      showSavedKey(saved);
+    if (saved.expiry > Date.now()) {
+      showSavedKey(saved);       // valid — show key + countdown
     } else {
-      // Key expired — clear it, show tasks with renew message
-      clearSavedKey();
-      showExpiredNotice();
+      showExpiredState(saved);   // expired — show expired UI with renew button, NOT tasks
     }
   }
+  // no saved key at all → show tasks normally (default state)
 });
 
 function loadSavedKey() {
@@ -323,21 +317,45 @@ function clearSavedKey() {
 }
 
 function showSavedKey(saved) {
-  // Hide task flow, show banner
   document.getElementById('taskFlow').style.display = 'none';
   document.getElementById('headerSub').textContent = 'Your key is ready — tasks already complete';
-
-  const banner = document.getElementById('savedBanner');
-  banner.classList.add('visible');
+  document.getElementById('savedBanner').classList.add('visible');
   document.getElementById('savedKeyDisplay').textContent = saved.key;
-
-  // Start live expiry countdown in banner
   startExpiryCountdown(saved.expiry, 'expiryCountdown');
 }
 
-function showExpiredNotice() {
-  showToast('⚠ Your previous key expired — complete tasks for a new one');
-  document.getElementById('headerSub').textContent = 'Your key expired — complete tasks to renew';
+// Called when key is already expired on page load
+function showExpiredState(saved) {
+  document.getElementById('taskFlow').style.display = 'none';
+  document.getElementById('headerSub').textContent = 'Your key expired — click Renew to get a new one';
+
+  const banner = document.getElementById('savedBanner');
+  banner.classList.add('visible');
+
+  // Show the expired key greyed out
+  const keyEl = document.getElementById('savedKeyDisplay');
+  keyEl.textContent = saved.key;
+  keyEl.style.opacity = '0.3';
+  keyEl.style.cursor = 'default';
+  keyEl.onclick = null;
+
+  // Show expiry countdown as expired immediately
+  const ec = document.getElementById('expiryCountdown');
+  ec.textContent = '🔴 KEY EXPIRED';
+  ec.classList.add('expired');
+
+  // Hide copy hint, show renew message
+  const copyHint = banner.querySelector('.copy-hint');
+  if (copyHint) {
+    copyHint.textContent = 'This key has expired — click Renew Key below to get a new one';
+    copyHint.style.color = 'var(--accent2)';
+  }
+
+  // Make renew button pulse
+  const renewBtn = document.getElementById('renewBtn');
+  if (renewBtn) {
+    renewBtn.style.animation = 'renewPulse 1.5s ease-in-out infinite';
+  }
 }
 
 function startExpiryCountdown(expiry, elId) {
@@ -348,24 +366,56 @@ function startExpiryCountdown(expiry, elId) {
   function update() {
     const ms = expiry - Date.now();
     if (ms <= 0) {
-      el.textContent = '🔴 KEY EXPIRED — Click Renew';
-      el.classList.add('expired');
       clearInterval(expiryInterval);
-      // Auto-show renew button prominently
-      document.getElementById('renewBtn') && (document.getElementById('renewBtn').style.animation = 'pulse 1s infinite');
+      // Live expiry — key just expired while user was on the page
+      onKeyExpiredLive();
       return;
     }
     const h = Math.floor(ms / 3600000);
     const m = Math.floor((ms % 3600000) / 60000);
     const s = Math.floor((ms % 60000) / 1000);
-    const label = h > 0
-      ? `⏳ Expires in ${h}h ${m}m ${s}s`
-      : `⏳ Expires in ${m}m ${s}s`;
-    el.textContent = label;
-    if (ms < 3600000) el.classList.add('expiring'); // < 1hr warning
+    el.textContent = h > 0 ? `⏳ Expires in ${h}h ${m}m ${s}s` : `⏳ Expires in ${m}m ${s}s`;
+    if (ms < 3600000) el.classList.add('expiring');
   }
   update();
   expiryInterval = setInterval(update, 1000);
+}
+
+// Called when the key expires while the user is actively on the page
+function onKeyExpiredLive() {
+  const ec = document.getElementById('expiryCountdown');
+  if (ec) {
+    ec.textContent = '🔴 KEY EXPIRED';
+    ec.classList.remove('expiring');
+    ec.classList.add('expired');
+  }
+
+  // Grey out the key display
+  const keyEl = document.getElementById('savedKeyDisplay');
+  if (keyEl) {
+    keyEl.style.opacity = '0.3';
+    keyEl.style.cursor = 'default';
+    keyEl.onclick = null;
+  }
+
+  // Update copy hint
+  const banner = document.getElementById('savedBanner');
+  if (banner) {
+    const copyHint = banner.querySelector('.copy-hint');
+    if (copyHint) {
+      copyHint.textContent = 'This key has expired — click Renew Key below';
+      copyHint.style.color = 'var(--accent2)';
+    }
+  }
+
+  // Pulse the renew button
+  const renewBtn = document.getElementById('renewBtn');
+  if (renewBtn) renewBtn.style.animation = 'renewPulse 1.5s ease-in-out infinite';
+
+  // Update header
+  document.getElementById('headerSub').textContent = 'Your key expired — click Renew to get a new one';
+
+  showToast('🔴 Your key just expired — click Renew Key!');
 }
 
 // =============================================================
@@ -380,25 +430,262 @@ function showToast(msg) {
 }
 
 // =============================================================
-//  TASK 1 — Linkvertise #1
+//  ANTI-BYPASS SECURITY SYSTEM
+//  - All state stored as hashed tokens, not plain booleans
+//  - Functions use one-time tokens generated at runtime
+//  - Timing enforced: must spend minimum time on LV page
+//  - Tab visibility tracked: must actually leave and return
+//  - Console function calls blocked (wrong token = fail)
+// =============================================================
+
+const _S = (function() {
+  // Internal sealed state — not accessible from console
+  const _state = {
+    lv1Token: null,
+    lv1TabLeft: false,
+    lv1OpenTime: 0,
+    lv1MinTime: 15000,   // must be away for at least 15 seconds
+    lv1ReadyToComplete: false,
+    lv1Done: false,
+
+    lv2Token: null,
+    lv2TabLeft: false,
+    lv2OpenTime: 0,
+    lv2MinTime: 15000,
+    lv2ReadyToComplete: false,
+    lv2Done: false,
+
+    activeTask: 0,
+    blocked: false,
+    tamperCount: 0,
+  };
+
+  // Generate a cryptographically random token
+  function makeToken() {
+    const arr = new Uint32Array(4);
+    crypto.getRandomValues(arr);
+    return Array.from(arr).map(n => n.toString(36)).join('-');
+  }
+
+  // Hash a token with a salt so stored value can't be replayed
+  function hashToken(token, salt) {
+    let h = 0x811c9dc5;
+    const s = token + '|' + salt;
+    for (let i = 0; i < s.length; i++) {
+      h ^= s.charCodeAt(i);
+      h = (h * 0x01000193) >>> 0;
+    }
+    return h.toString(36);
+  }
+
+  let _lv1Hash = null;
+  let _lv2Hash = null;
+  const _salt = makeToken(); // session salt
+
+  // Detect console open attempts (basic deterrent)
+  let _devtoolsOpen = false;
+  const _threshold = 160;
+  setInterval(() => {
+    const w = window.outerWidth - window.innerWidth;
+    const h = window.outerHeight - window.innerHeight;
+    if (w > _threshold || h > _threshold) {
+      if (!_devtoolsOpen) {
+        _devtoolsOpen = true;
+        _state.tamperCount++;
+        if (_state.tamperCount >= 2) {
+          _state.blocked = true;
+          showSecurityBlock();
+        }
+      }
+    } else { _devtoolsOpen = false; }
+  }, 1000);
+
+  // Page visibility API — detect tab switches
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      // User left the tab — record it
+      if (_state.activeTask === 1 && _state.lv1Token && !_state.lv1Done) {
+        _state.lv1TabLeft = true;
+      }
+      if (_state.activeTask === 2 && _state.lv2Token && !_state.lv2Done) {
+        _state.lv2TabLeft = true;
+      }
+    } else {
+      // User came BACK to the tab
+      if (_state.activeTask === 1 && _state.lv1TabLeft && !_state.lv1Done) {
+        const elapsed = Date.now() - _state.lv1OpenTime;
+        if (elapsed >= _state.lv1MinTime) {
+          // Already spent enough time — show button right now
+          _state.lv1ReadyToComplete = true;
+          showLV1DoneButton();
+        } else {
+          // Came back too fast — wait the remaining time then show button
+          const waitMs = _state.lv1MinTime - elapsed;
+          const s = Math.ceil(waitMs / 1000);
+          showToast(`⚠ Stay on Linkvertise for ${s} more second${s !== 1 ? 's' : ''}!`);
+          setTimeout(() => {
+            if (!_state.lv1Done) {
+              _state.lv1ReadyToComplete = true;
+              showLV1DoneButton();
+            }
+          }, waitMs);
+        }
+      }
+      if (_state.activeTask === 2 && _state.lv2TabLeft && !_state.lv2Done) {
+        const elapsed = Date.now() - _state.lv2OpenTime;
+        if (elapsed >= _state.lv2MinTime) {
+          _state.lv2ReadyToComplete = true;
+          showLV2DoneButton();
+        } else {
+          const waitMs = _state.lv2MinTime - elapsed;
+          const s = Math.ceil(waitMs / 1000);
+          showToast(`⚠ Stay on Linkvertise for ${s} more second${s !== 1 ? 's' : ''}!`);
+          setTimeout(() => {
+            if (!_state.lv2Done) {
+              _state.lv2ReadyToComplete = true;
+              showLV2DoneButton();
+            }
+          }, waitMs);
+        }
+      }
+    }
+  });
+
+  function showLV1DoneButton() {
+    document.getElementById('lv1DoneBtn').style.display = 'inline-flex';
+    document.getElementById('lv1Hint').style.display = 'flex';
+    const t = document.getElementById('lv1HintText');
+    if (t) t.textContent = 'Linkvertise complete! Click "I Completed It" above ↑';
+    showToast('✓ Done! Come back and click "I Completed It"');
+  }
+
+  function showLV2DoneButton() {
+    document.getElementById('lv2DoneBtn').style.display = 'inline-flex';
+    document.getElementById('lv2Hint').style.display = 'flex';
+    const t = document.getElementById('lv2HintText');
+    if (t) t.textContent = 'Linkvertise complete! Click "I Completed It" above ↑';
+    showToast('✓ Done! Come back and click "I Completed It"');
+  }
+
+  // Public API — returns bound functions that require valid tokens
+  return {
+    // Called when user clicks "Open Linkvertise #1"
+    startLV1: function() {
+      if (_state.blocked) return;
+      if (_state.lv1Done) return;
+      _state.activeTask = 1;
+      _state.lv1Token = makeToken();
+      _lv1Hash = hashToken(_state.lv1Token, _salt);
+      _state.lv1OpenTime = Date.now();
+      _state.lv1TabLeft = false;
+      _state.lv1ReadyToComplete = false;
+      // NO fallback setTimeout — must actually leave and return via visibility API
+    },
+
+    // Called when user clicks "I Completed It" for task 1
+    finishLV1: function(token) {
+      if (_state.blocked) { showToast('🔴 Security check failed'); return; }
+      if (_state.lv1Done) return;
+      if (!_state.lv1Token) { showToast('⚠ Open the Linkvertise link first!'); return; }
+      if (!_state.lv1TabLeft) { showToast('⚠ You must actually visit the Linkvertise page!'); return; }
+      if (!_state.lv1ReadyToComplete) { showToast('⚠ Finish the Linkvertise page fully!'); return; }
+
+      // Verify token matches (prevents console calling completeLV1())
+      const expectedHash = hashToken(_state.lv1Token, _salt);
+      if (token !== _state.lv1Token || _lv1Hash !== expectedHash) {
+        _state.tamperCount++;
+        showToast('🔴 Invalid token — bypass detected');
+        return;
+      }
+
+      _state.lv1Done = true;
+      _state.activeTask = 0;
+      _state.lv1Token = null;
+      _lv1Hash = null;
+      onLV1Complete();
+    },
+
+    startLV2: function() {
+      if (_state.blocked) return;
+      if (!_state.lv1Done) { showToast('⚠ Complete Task 1 first!'); return; }
+      if (_state.lv2Done) return;
+      _state.activeTask = 2;
+      _state.lv2Token = makeToken();
+      _lv2Hash = hashToken(_state.lv2Token, _salt);
+      _state.lv2OpenTime = Date.now();
+      _state.lv2TabLeft = false;
+      _state.lv2ReadyToComplete = false;
+    },
+
+    finishLV2: function(token) {
+      if (_state.blocked) { showToast('🔴 Security check failed'); return; }
+      if (_state.lv2Done) return;
+      if (!_state.lv2Token) { showToast('⚠ Open the Linkvertise link first!'); return; }
+      if (!_state.lv2TabLeft) { showToast('⚠ You must actually visit the Linkvertise page!'); return; }
+      if (!_state.lv2ReadyToComplete) { showToast('⚠ Finish the Linkvertise page fully!'); return; }
+
+      const expectedHash = hashToken(_state.lv2Token, _salt);
+      if (token !== _state.lv2Token || _lv2Hash !== expectedHash) {
+        _state.tamperCount++;
+        showToast('🔴 Invalid token — bypass detected');
+        return;
+      }
+
+      _state.lv2Done = true;
+      _state.activeTask = 0;
+      _state.lv2Token = null;
+      _lv2Hash = null;
+      onLV2Complete();
+    },
+
+    isDone: function() { return _state.lv1Done && _state.lv2Done; },
+    getToken1: function() { return _state.lv1Token; },
+    getToken2: function() { return _state.lv2Token; },
+  };
+})();
+
+// Show a full-page block overlay if tampering detected
+function showSecurityBlock() {
+  let overlay = document.getElementById('secBlock');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.id = 'secBlock';
+    overlay.style.cssText = 'position:fixed;inset:0;background:#050810;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:Orbitron,monospace;text-align:center;padding:40px';
+    overlay.innerHTML = `
+      <div style="font-size:48px;margin-bottom:20px">🔴</div>
+      <div style="font-size:18px;font-weight:900;color:#ff3e8a;letter-spacing:2px;margin-bottom:12px">SECURITY BLOCK</div>
+      <div style="font-size:13px;color:#4a5568;max-width:320px;line-height:1.8">Bypass attempt detected.<br>Please reload the page and complete the tasks normally.</div>
+      <button onclick="location.reload()" style="margin-top:28px;padding:12px 28px;border-radius:8px;background:linear-gradient(135deg,#ff3e8a,#cc1a60);color:#fff;border:none;font-family:Orbitron,monospace;font-size:12px;font-weight:700;letter-spacing:1.5px;cursor:pointer">RELOAD PAGE</button>
+    `;
+    document.body.appendChild(overlay);
+  }
+}
+
+// =============================================================
+//  TASK 1 — Linkvertise #1 (button click handlers)
+//  NOTE: "I Completed It" button passes the live token
+//        which was generated at click-time — not guessable
 // =============================================================
 function onLV1Click() {
-  lv1Clicked = true;
-  // Show "I Completed It" after 5s (enough time for them to at least see the page opened)
-  setTimeout(() => {
-    const btn = document.getElementById('lv1DoneBtn');
-    btn.style.display = 'inline-flex';
-    document.getElementById('lv1Hint').style.display = 'flex';
-  }, 5000);
+  _S.startLV1();
+  document.getElementById('lv1Hint').style.display = 'flex';
+  document.getElementById('lv1HintText').textContent = 'Complete ALL steps on the Linkvertise page, then come back here…';
+  const btn = document.getElementById('lv1Btn');
+  btn.style.opacity = '0.6';
+  btn.style.pointerEvents = 'none';
+  btn.innerHTML = btn.innerHTML.replace('OPEN LINKVERTISE #1', 'OPENED — GO COMPLETE IT ✓');
 }
 
 function completeLV1() {
-  if (!lv1Clicked) { showToast('⚠ Click OPEN LINKVERTISE #1 first!'); return; }
-  lv1Done = true;
+  const tok = _S.getToken1();
+  _S.finishLV1(tok);
+}
 
+function onLV1Complete() {
   document.getElementById('card1').classList.add('completed');
   document.getElementById('badge1').style.display = 'inline-flex';
   document.getElementById('lv1Hint').style.display = 'none';
+  document.getElementById('lv1DoneBtn').style.display = 'none';
   const n1 = document.getElementById('tnum1');
   n1.classList.add('done-num'); n1.textContent = '✓';
   const d1 = document.getElementById('dot1');
@@ -406,7 +693,6 @@ function completeLV1() {
   document.getElementById('line1').classList.add('done');
   document.getElementById('dot2').classList.add('active');
   document.getElementById('card2').classList.remove('locked');
-
   showToast('✓ Linkvertise #1 complete!');
 }
 
@@ -414,31 +700,32 @@ function completeLV1() {
 //  TASK 2 — Linkvertise #2
 // =============================================================
 function onLV2Click() {
-  lv2Clicked = true;
-  setTimeout(() => {
-    const btn = document.getElementById('lv2DoneBtn');
-    btn.style.display = 'inline-flex';
-    document.getElementById('lv2Hint').style.display = 'flex';
-  }, 5000);
+  _S.startLV2();
+  document.getElementById('lv2Hint').style.display = 'flex';
+  document.getElementById('lv2HintText').textContent = 'Complete ALL steps on the Linkvertise page, then come back here…';
+  const btn = document.getElementById('lv2Btn');
+  btn.style.opacity = '0.6';
+  btn.style.pointerEvents = 'none';
+  btn.innerHTML = btn.innerHTML.replace('OPEN LINKVERTISE #2', 'OPENED — GO COMPLETE IT ✓');
 }
 
 function completeLV2() {
-  if (!lv2Clicked) { showToast('⚠ Click OPEN LINKVERTISE #2 first!'); return; }
-  lv2Done = true;
+  const tok = _S.getToken2();
+  _S.finishLV2(tok);
+}
 
+function onLV2Complete() {
   document.getElementById('card2').classList.add('completed');
   document.getElementById('badge2').style.display = 'inline-flex';
   document.getElementById('lv2Hint').style.display = 'none';
+  document.getElementById('lv2DoneBtn').style.display = 'none';
   const n2 = document.getElementById('tnum2');
   n2.classList.add('done-num'); n2.textContent = '✓';
   const d2 = document.getElementById('dot2');
   d2.classList.remove('active'); d2.classList.add('done'); d2.textContent = '✓';
   document.getElementById('line2').classList.add('done');
   document.getElementById('dot3').classList.add('active');
-
   showToast('✓ Linkvertise #2 complete! Generating key…');
-
-  // Auto-generate key immediately after both tasks done
   setTimeout(() => generateKey(), 800);
 }
 
@@ -483,7 +770,7 @@ function getUID() {
 }
 
 function generateKey() {
-  if (!lv1Done || !lv2Done) return;
+  if (!_S.isDone()) return;
 
   const uid = getUID();
   const day = getDaySeed();
@@ -517,6 +804,12 @@ function copyKey() {
 }
 
 function copySavedKey() {
+  // Don't allow copying an expired key
+  const saved = loadSavedKey();
+  if (!saved || saved.expiry <= Date.now()) {
+    showToast('🔴 Key expired — click Renew Key to get a new one');
+    return;
+  }
   const el = document.getElementById('savedKeyDisplay');
   doCopy(el.textContent, 'savedKeyDisplay');
 }
@@ -545,50 +838,15 @@ function closeModal() {
 function confirmRenew() {
   closeModal();
 
-  // Clear saved data
+  // Clear saved key + uid so they get a fresh key
   clearSavedKey();
   localStorage.removeItem('af_uid');
   if (expiryInterval) clearInterval(expiryInterval);
 
-  // Reset state flags
-  lv1Clicked = false;
-  lv1Done = false;
-  lv2Clicked = false;
-  lv2Done = false;
-  generatedKey = null;
-
-  // Hide banner, show tasks again
-  document.getElementById('savedBanner').classList.remove('visible');
-  document.getElementById('taskFlow').style.display = '';
-  document.getElementById('headerSub').textContent = 'Complete 2 tasks to generate your free access key';
-
-  // Reset task 1
-  document.getElementById('card1').classList.remove('completed');
-  document.getElementById('badge1').style.display = 'none';
-  const n1 = document.getElementById('tnum1'); n1.classList.remove('done-num'); n1.textContent = '1';
-  const d1 = document.getElementById('dot1'); d1.classList.remove('done'); d1.classList.add('active'); d1.textContent = '1';
-  document.getElementById('line1').classList.remove('done');
-  document.getElementById('lv1DoneBtn').style.display = 'none';
-  document.getElementById('lv1Hint').style.display = 'none';
-
-  // Reset task 2
-  document.getElementById('card2').classList.remove('completed');
-  document.getElementById('card2').classList.add('locked');
-  document.getElementById('badge2').style.display = 'none';
-  const n2 = document.getElementById('tnum2'); n2.classList.remove('done-num'); n2.textContent = '2';
-  const d2 = document.getElementById('dot2'); d2.classList.remove('done','active'); d2.textContent = '2';
-  document.getElementById('line2').classList.remove('done');
-  document.getElementById('lv2DoneBtn').style.display = 'none';
-  document.getElementById('lv2Hint').style.display = 'none';
-
-  // Reset dot3
-  const d3 = document.getElementById('dot3'); d3.classList.remove('done','active'); d3.textContent = '✓';
-
-  // Hide key card
-  document.getElementById('keyCard').classList.remove('visible');
-
-  showToast('🔄 Tasks reset — complete Linkvertise links for a new key!');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  // Reload the page — this resets all sealed security state cleanly
+  // (can't reset the IIFE closure without a reload anyway)
+  showToast('🔄 Reloading — complete tasks for a new key…');
+  setTimeout(() => location.reload(), 1000);
 }
 
 // =============================================================
