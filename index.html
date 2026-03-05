@@ -29,7 +29,6 @@
   .orb3{width:250px;height:250px;background:var(--accent3);top:50%;right:20%;animation-delay:5s}
   @keyframes orbFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-30px)}}
 
-  /* ── LAYOUT ── */
   .container{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:40px 20px 80px}
   .header{text-align:center;margin-bottom:48px;animation:fadeDown .8s ease both}
   @keyframes fadeDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
@@ -38,7 +37,6 @@
   h1{font-family:'Orbitron',monospace;font-size:clamp(24px,5vw,42px);font-weight:900;background:linear-gradient(135deg,#fff 0%,var(--accent) 50%,var(--accent2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px}
   .subtitle{color:var(--muted);font-size:15px;font-weight:300;letter-spacing:1px}
 
-  /* ── PROGRESS ── */
   .progress-bar{display:flex;align-items:center;justify-content:center;margin-bottom:40px;animation:fadeUp .8s .2s ease both;flex-wrap:nowrap;gap:0}
   .step-dot{display:flex;flex-direction:column;align-items:center;gap:6px;flex-shrink:0}
   .dot{width:36px;height:36px;border-radius:50%;border:2px solid var(--border);background:var(--card);display:flex;align-items:center;justify-content:center;font-family:'Orbitron',monospace;font-size:13px;font-weight:700;color:var(--muted);transition:all .4s}
@@ -49,7 +47,6 @@
   @keyframes lineGrow{from{transform:scaleX(0);transform-origin:left}to{transform:scaleX(1)}}
   .dot-label{font-size:10px;color:var(--muted);text-align:center;letter-spacing:.5px;white-space:nowrap}
 
-  /* ── CARDS ── */
   .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px;position:relative;overflow:hidden;animation:fadeUp .8s ease both;transition:border-color .3s}
   .card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,212,255,.03),transparent 50%);pointer-events:none}
   .card.locked{opacity:.4;pointer-events:none}
@@ -62,20 +59,20 @@
   .cbadge{margin-left:auto;background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);border-radius:20px;padding:4px 10px;font-size:10px;color:var(--success);font-family:'Orbitron',monospace;letter-spacing:1px;white-space:nowrap;flex-shrink:0}
   .task-desc{font-size:14px;color:#94a3b8;line-height:1.6;margin-bottom:20px;font-weight:300}
 
-  /* ── BUTTONS ── */
   .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:8px;font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:1.5px;cursor:pointer;border:none;transition:all .3s;text-decoration:none;white-space:nowrap}
   .btn-linkvertise{background:linear-gradient(135deg,#ff6420,#e04400);color:#fff;box-shadow:0 4px 20px rgba(255,100,32,.35)}
-  .btn-linkvertise:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,100,32,.55)}
+  .btn-linkvertise:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,100,32,.55)}
+  .btn-linkvertise:disabled{opacity:.6;cursor:not-allowed}
   .btn-primary{background:linear-gradient(135deg,var(--accent),#0066ff);color:#000;box-shadow:0 4px 20px rgba(0,212,255,.3)}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,212,255,.5)}
+  .btn-primary:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,212,255,.5)}
+  .btn-primary:disabled{opacity:.6;cursor:not-allowed}
   .btn-danger{background:linear-gradient(135deg,var(--accent2),#cc1a60);color:#fff;box-shadow:0 4px 20px rgba(255,62,138,.3)}
-  .btn-danger:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,62,138,.5)}
+  .btn-danger:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,62,138,.5)}
   .btn-outline{background:transparent;border:1px solid var(--border);color:var(--muted)}
   .btn-outline:hover{border-color:var(--accent);color:var(--accent)}
   .btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:20px}
   .btn-group{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
 
-  /* ── IMPROVED TIMER ── */
   .wait-timer{display:none;background:rgba(0,212,255,.05);border:1px solid rgba(0,212,255,.2);border-radius:12px;padding:16px 18px;margin-top:14px}
   .wait-timer.active{display:block}
   .wait-timer-top{display:flex;align-items:center;gap:14px;margin-bottom:12px}
@@ -91,13 +88,11 @@
   .timer-bar-label{display:flex;justify-content:space-between;margin-top:6px}
   .timer-bar-label span{font-size:10px;color:var(--muted);font-family:'Orbitron',monospace;letter-spacing:.5px}
 
-  /* ── HINT ── */
   .lv-hint{display:none;align-items:center;gap:7px;margin-top:12px;font-size:12px;color:var(--accent);font-family:'Orbitron',monospace;letter-spacing:.5px;background:rgba(0,212,255,.06);border:1px solid rgba(0,212,255,.15);border-radius:8px;padding:9px 14px;line-height:1.5}
   .lv-hint.visible{display:flex}
   .lv-hint.success{color:var(--success);background:rgba(0,255,136,.06);border-color:rgba(0,255,136,.2)}
   .lv-hint.warning{color:#ffb347;background:rgba(255,179,71,.06);border-color:rgba(255,179,71,.2)}
 
-  /* ── SAVED BANNER ── */
   .saved-banner{display:none;background:linear-gradient(135deg,rgba(0,255,136,.06),rgba(0,212,255,.06));border:1px solid rgba(0,255,136,.35);border-radius:16px;padding:28px;margin-bottom:20px;animation:fadeDown .6s ease both}
   .saved-banner.visible{display:block}
   .saved-top{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
@@ -109,7 +104,6 @@
   .expiry-countdown.expired{background:rgba(255,62,138,.15);border-color:rgba(255,62,138,.5);color:var(--accent2);font-weight:700}
   @keyframes renewPulse{0%,100%{box-shadow:0 4px 20px rgba(255,62,138,.3);transform:translateY(0)}50%{box-shadow:0 8px 40px rgba(255,62,138,.7);transform:translateY(-3px)}}
 
-  /* ── KEY CARD ── */
   .key-card{background:linear-gradient(135deg,rgba(0,255,136,.05),rgba(0,212,255,.05));border:1px solid rgba(0,255,136,.3);border-radius:16px;padding:28px;text-align:center;display:none;animation:keyReveal .8s ease both}
   @keyframes keyReveal{from{opacity:0;transform:scale(.9) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
   .key-card.visible{display:block}
@@ -120,7 +114,6 @@
   .key-note{font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.6}
   .expiry-info{display:inline-flex;align-items:center;gap:6px;background:rgba(255,62,138,.1);border:1px solid rgba(255,62,138,.2);border-radius:20px;padding:4px 14px;font-size:12px;color:var(--accent2);letter-spacing:1px}
 
-  /* ── KEY GENERATING ANIMATION ── */
   .key-generating{display:none;background:linear-gradient(135deg,rgba(124,58,237,.08),rgba(0,212,255,.08));border:1px solid rgba(124,58,237,.3);border-radius:16px;padding:40px 28px;text-align:center;margin-bottom:20px;animation:fadeUp .5s ease both}
   .key-generating.visible{display:block}
   .gen-spinner{width:56px;height:56px;border:3px solid rgba(124,58,237,.2);border-top-color:var(--accent3);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 20px}
@@ -134,14 +127,12 @@
   .gen-title{font-family:'Orbitron',monospace;font-size:14px;font-weight:700;color:var(--accent3);letter-spacing:2px;margin-bottom:8px}
   .gen-steps{font-size:12px;color:var(--muted);font-family:'Orbitron',monospace;letter-spacing:.5px;min-height:18px}
 
-  /* ── HOW-TO ── */
   .how-to{background:rgba(0,212,255,.05);border:1px solid rgba(0,212,255,.15);border-radius:12px;padding:16px 20px;margin-top:20px;text-align:left}
   .how-to-title{font-family:'Orbitron',monospace;font-size:11px;letter-spacing:2px;color:var(--accent);margin-bottom:10px}
   .how-to ol{padding-left:18px}
   .how-to li{font-size:13px;color:#94a3b8;line-height:2.2}
   .how-to strong{color:#fff}
 
-  /* ── MODAL ── */
   .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);z-index:300;align-items:center;justify-content:center;padding:20px}
   .modal-overlay.open{display:flex}
   .modal{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px;max-width:400px;width:100%;text-align:center;animation:fadeDown .3s ease both}
@@ -151,14 +142,12 @@
   .modal-body strong{color:var(--accent2)}
   .modal-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 
-  /* ── PARTICLES & TOAST ── */
   .particle{position:fixed;pointer-events:none;z-index:100;border-radius:2px;animation:particleFall 2s ease-out forwards}
   @keyframes particleFall{0%{opacity:1;transform:translateY(0) rotate(0deg)}100%{opacity:0;transform:translateY(400px) rotate(720deg)}}
   .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:rgba(0,0,0,.85);border:1px solid rgba(0,255,136,.4);backdrop-filter:blur(10px);border-radius:10px;padding:12px 24px;font-family:'Orbitron',monospace;font-size:11px;color:var(--success);letter-spacing:1px;z-index:400;transition:transform .4s ease,opacity .4s ease;white-space:nowrap;max-width:90vw;text-overflow:ellipsis;overflow:hidden}
   .toast.show{transform:translateX(-50%) translateY(0)}
   .icon{width:16px;height:16px;flex-shrink:0}
 
-  /* ── MOBILE ── */
   @media(max-width:480px){
     .container{padding:24px 14px 60px}
     .header{margin-bottom:32px}
@@ -183,14 +172,13 @@
 <div class="orb orb2"></div>
 <div class="orb orb3"></div>
 
-<!-- RENEW MODAL -->
 <div class="modal-overlay" id="renewModal" onclick="if(event.target===this)closeModal()">
   <div class="modal">
     <div class="modal-icon">🔄</div>
     <div class="modal-title">RENEW YOUR KEY?</div>
     <div class="modal-body">
       This will <strong>delete your current key</strong> and reset all tasks.<br>
-      You'll need to complete both Linkvertise tasks again to get a fresh 24-hour key.
+      You'll need to complete both tasks again to get a fresh 24-hour key.
     </div>
     <div class="modal-btns">
       <button class="btn btn-outline" onclick="closeModal()">CANCEL</button>
@@ -206,7 +194,6 @@
     <p class="subtitle" id="headerSub">Complete 2 tasks to generate your free access key</p>
   </div>
 
-  <!-- SAVED KEY BANNER -->
   <div class="saved-banner" id="savedBanner">
     <div class="saved-top">
       <div class="saved-icon">🔑</div>
@@ -233,7 +220,6 @@
     </div>
   </div>
 
-  <!-- TASK FLOW -->
   <div id="taskFlow">
     <div class="progress-bar">
       <div class="step-dot">
@@ -252,7 +238,6 @@
       </div>
     </div>
 
-    <!-- TASK 1 -->
     <div class="card" id="card1" style="animation-delay:.3s">
       <div class="card-header">
         <div class="task-num" id="tnum1">1</div>
@@ -275,7 +260,6 @@
         <button class="btn btn-primary" id="lv1DoneBtn" onclick="completeLV1()" style="display:none">✓ I COMPLETED IT</button>
       </div>
 
-      <!-- IMPROVED TIMER -->
       <div class="wait-timer" id="waitTimer1">
         <div class="wait-timer-top">
           <div class="timer-icon">⏱️</div>
@@ -298,7 +282,6 @@
       </div>
     </div>
 
-    <!-- TASK 2 -->
     <div class="card locked" id="card2" style="animation-delay:.5s">
       <div class="card-header">
         <div class="task-num" id="tnum2">2</div>
@@ -320,7 +303,6 @@
         <button class="btn btn-primary" id="lv2DoneBtn" onclick="completeLV2()" style="display:none">✓ I COMPLETED IT</button>
       </div>
 
-      <!-- IMPROVED TIMER -->
       <div class="wait-timer" id="waitTimer2">
         <div class="wait-timer-top">
           <div class="timer-icon">⏱️</div>
@@ -343,7 +325,6 @@
       </div>
     </div>
 
-    <!-- KEY GENERATING (NEW LOADING STATE) -->
     <div class="key-generating" id="keyGenerating">
       <div class="gen-spinner"></div>
       <div class="gen-dots">
@@ -355,7 +336,6 @@
       <div class="gen-steps" id="genStepText">Verifying task completion…</div>
     </div>
 
-    <!-- KEY OUTPUT -->
     <div class="key-card" id="keyCard">
       <div class="key-label">🔑 Your Access Key — Auto Saved!</div>
       <div class="key-display" id="keyDisplay" onclick="copyKey()">—</div>
@@ -381,23 +361,17 @@
 <div class="toast" id="toast"></div>
 
 <script>
-// ================================================================
-//  CONFIG
-// ================================================================
-const SECRET              = "AnimeFinals2025XK9";
-const STORAGE_KEY         = "af_saved_key";
-const PROGRESS_KEY        = "af_task_progress";
-const FINGERPRINT_KEY     = "af_fp";
+const SECRET = "AnimeFinals2025XK9";
+const STORAGE_KEY = "af_saved_key";
+const PROGRESS_KEY = "af_task_progress";
+const FINGERPRINT_KEY = "af_fp";
 const LV_REQUIRED_AWAY_MS = 45000;
 
-let generatedKey   = null;
+let generatedKey = null;
 let expiryInterval = null;
+let toastTimeout = null;
+let isGeneratingKey = false;
 
-// ================================================================
-//  IMPROVED UID / FINGERPRINTING
-//  Uses a composite fingerprint so clearing localStorage alone
-//  doesn't reset the 24-hour restriction.
-// ================================================================
 function buildFingerprint() {
   const parts = [
     navigator.language || '',
@@ -408,7 +382,6 @@ function buildFingerprint() {
     navigator.hardwareConcurrency || '',
     navigator.platform || '',
   ];
-  // simple djb2 over the joined string
   let h = 5381;
   const s = parts.join('|');
   for (let i = 0; i < s.length; i++) h = (((h << 5) + h) ^ s.charCodeAt(i)) >>> 0;
@@ -417,102 +390,111 @@ function buildFingerprint() {
 
 function getUID() {
   const fp = buildFingerprint();
-  // Store fp so subsequent visits can be matched even after localStorage clear
-  try {
-    // Try sessionStorage as backup (survives localStorage.clear() if done from JS)
-    sessionStorage.setItem(FINGERPRINT_KEY, fp);
-  } catch(e) {}
-
+  try { sessionStorage.setItem(FINGERPRINT_KEY, fp); } catch(e) {}
   let u = null;
   try { u = localStorage.getItem('af_uid'); } catch(e) {}
   if (!u) {
-    // No stored UID — check if there's a key stored under a fingerprint-derived UID
-    // If so, reuse it so the 24h window persists
     const fpUID = 'U' + fp.slice(0, 5);
     try {
       const savedRaw = localStorage.getItem(STORAGE_KEY);
       if (savedRaw) {
         const saved = JSON.parse(savedRaw);
-        // If saved key contains the fp-based UID, reuse it
-        if (saved.uid && saved.uid === fpUID) { u = fpUID; }
+        if (saved && saved.uid && saved.uid === fpUID) { u = fpUID; }
       }
     } catch(e) {}
-    if (!u) {
-      u = fpUID;
-    }
+    if (!u) { u = fpUID; }
     try { localStorage.setItem('af_uid', u); } catch(e) {}
   }
   return u;
 }
 
-// ================================================================
-//  PROGRESS
-// ================================================================
 function saveProgress(t1) {
   try { localStorage.setItem(PROGRESS_KEY, JSON.stringify({ t1 })); } catch(e) {}
 }
+
 function loadProgress() {
-  try { const r = localStorage.getItem(PROGRESS_KEY); return r ? JSON.parse(r) : { t1: false }; }
-  catch(e) { return { t1: false }; }
+  try { 
+    const r = localStorage.getItem(PROGRESS_KEY); 
+    return r ? JSON.parse(r) : { t1: false }; 
+  } catch(e) { 
+    return { t1: false }; 
+  }
 }
-function clearProgress() { try { localStorage.removeItem(PROGRESS_KEY); } catch(e) {} }
 
-// ================================================================
-//  SAVED KEY
-// ================================================================
+function clearProgress() { 
+  try { localStorage.removeItem(PROGRESS_KEY); } catch(e) {} 
+}
+
 function loadSavedKey() {
-  try { const r = localStorage.getItem(STORAGE_KEY); return r ? JSON.parse(r) : null; }
-  catch(e) { return null; }
+  try { 
+    const r = localStorage.getItem(STORAGE_KEY); 
+    return r ? JSON.parse(r) : null; 
+  } catch(e) { 
+    return null; 
+  }
 }
-function clearSavedKey() { try { localStorage.removeItem(STORAGE_KEY); } catch(e) {} }
 
-// ================================================================
-//  TOAST
-// ================================================================
+function clearSavedKey() { 
+  try { localStorage.removeItem(STORAGE_KEY); } catch(e) {} 
+}
+
 function showToast(msg, color) {
   const t = document.getElementById('toast');
+  if (!t) return;
   t.textContent = msg;
   t.style.color = color || 'var(--success)';
   t.classList.add('show');
-  clearTimeout(t._tid);
-  t._tid = setTimeout(() => t.classList.remove('show'), 3500);
+  if (toastTimeout) clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => t.classList.remove('show'), 3500);
 }
 
-// ================================================================
-//  EXPIRY COUNTDOWN
-// ================================================================
 function startExpiryCountdown(expiry, elId) {
   const el = document.getElementById(elId);
   if (!el) return;
   if (expiryInterval) clearInterval(expiryInterval);
+  
   function tick() {
     const ms = expiry - Date.now();
-    if (ms <= 0) { clearInterval(expiryInterval); onKeyExpiredLive(); return; }
+    if (ms <= 0) { 
+      clearInterval(expiryInterval); 
+      onKeyExpiredLive(); 
+      return; 
+    }
     const h = Math.floor(ms/3600000), m = Math.floor((ms%3600000)/60000), s = Math.floor((ms%60000)/1000);
     el.textContent = h > 0 ? `⏳ Expires in ${h}h ${m}m ${s}s` : `⏳ Expires in ${m}m ${s}s`;
     if (ms < 3600000) el.classList.add('expiring');
   }
-  tick(); expiryInterval = setInterval(tick, 1000);
+  tick(); 
+  expiryInterval = setInterval(tick, 1000);
 }
 
 function onKeyExpiredLive() {
   const ec = document.getElementById('expiryCountdown');
-  if (ec) { ec.textContent = '🔴 KEY EXPIRED'; ec.classList.remove('expiring'); ec.classList.add('expired'); }
+  if (ec) { 
+    ec.textContent = '🔴 KEY EXPIRED'; 
+    ec.classList.remove('expiring'); 
+    ec.classList.add('expired'); 
+  }
   const keyEl = document.getElementById('savedKeyDisplay');
-  if (keyEl) { keyEl.style.opacity='0.3'; keyEl.style.cursor='default'; keyEl.onclick=null; }
+  if (keyEl) { 
+    keyEl.style.opacity='0.3'; 
+    keyEl.style.cursor='default'; 
+    keyEl.onclick=null; 
+  }
   const cp = document.querySelector('#savedBanner .copy-hint');
-  if (cp) { cp.textContent='This key has expired — click Renew Key below'; cp.style.color='var(--accent2)'; }
+  if (cp) { 
+    cp.textContent='This key has expired — click Renew Key below'; 
+    cp.style.color='var(--accent2)'; 
+  }
   const renewBtn = document.getElementById('renewBtn');
   if (renewBtn) renewBtn.style.animation = 'renewPulse 1.5s ease-in-out infinite';
   document.getElementById('headerSub').textContent = 'Your key expired — click Renew to get a new one';
   showToast('🔴 Your key has expired — click Renew Key to get a new one!', 'var(--accent2)');
 }
 
-// ================================================================
-//  SHOW BANNERS
-// ================================================================
 function showSavedKey(saved) {
-  document.getElementById('taskFlow').style.display = 'none';
+  const taskFlow = document.getElementById('taskFlow');
+  if (taskFlow) taskFlow.style.display = 'none';
   document.getElementById('headerSub').textContent = 'Your key is ready — tasks already complete';
   document.getElementById('savedBanner').classList.add('visible');
   document.getElementById('savedKeyDisplay').textContent = saved.key;
@@ -520,41 +502,54 @@ function showSavedKey(saved) {
 }
 
 function showExpiredState(saved) {
-  document.getElementById('taskFlow').style.display = 'none';
+  const taskFlow = document.getElementById('taskFlow');
+  if (taskFlow) taskFlow.style.display = 'none';
   document.getElementById('headerSub').textContent = 'Your key expired — click Renew to get a new one';
   document.getElementById('savedBanner').classList.add('visible');
   const keyEl = document.getElementById('savedKeyDisplay');
-  keyEl.textContent = saved.key; keyEl.style.opacity='0.3'; keyEl.style.cursor='default'; keyEl.onclick=null;
+  keyEl.textContent = saved.key; 
+  keyEl.style.opacity='0.3'; 
+  keyEl.style.cursor='default'; 
+  keyEl.onclick=null;
   const ec = document.getElementById('expiryCountdown');
-  ec.textContent = '🔴 KEY EXPIRED'; ec.classList.add('expired');
+  ec.textContent = '🔴 KEY EXPIRED'; 
+  ec.classList.add('expired');
   const cp = document.querySelector('#savedBanner .copy-hint');
-  if (cp) { cp.textContent='This key has expired — click Renew Key below'; cp.style.color='var(--accent2)'; }
+  if (cp) { 
+    cp.textContent='This key has expired — click Renew Key below'; 
+    cp.style.color='var(--accent2)'; 
+  }
   const renewBtn = document.getElementById('renewBtn');
   if (renewBtn) renewBtn.style.animation='renewPulse 1.5s ease-in-out infinite';
 }
 
-// ================================================================
-//  RESTORE TASK 1 UI ON RELOAD
-// ================================================================
 function restoreTask1UI() {
-  document.getElementById('card1').classList.add('completed');
-  document.getElementById('badge1').style.display = 'inline-flex';
+  const card1 = document.getElementById('card1');
+  if (card1) card1.classList.add('completed');
+  const badge1 = document.getElementById('badge1');
+  if (badge1) badge1.style.display = 'inline-flex';
   const hint = document.getElementById('lv1Hint');
-  hint.style.display = 'none'; hint.classList.remove('visible');
-  document.getElementById('lv1DoneBtn').style.display = 'none';
-  const btn = document.getElementById('lv1Btn');
-  btn.style.opacity = '0.6'; btn.style.pointerEvents = 'none';
-  btn.innerHTML = btn.innerHTML.replace('OPEN LINKVERTISE #1','COMPLETED ✓');
-  const n1 = document.getElementById('tnum1'); n1.classList.add('done-num'); n1.textContent='✓';
-  const d1 = document.getElementById('dot1'); d1.classList.remove('active'); d1.classList.add('done'); d1.textContent='✓';
-  document.getElementById('line1').classList.add('done');
-  document.getElementById('dot2').classList.add('active');
-  document.getElementById('card2').classList.remove('locked');
+  if (hint) { hint.style.display = 'none'; hint.classList.remove('visible'); }
+  const btn = document.getElementById('lv1DoneBtn');
+  if (btn) btn.style.display = 'none';
+  const lv1Btn = document.getElementById('lv1Btn');
+  if (lv1Btn) {
+    lv1Btn.style.opacity = '0.6'; 
+    lv1Btn.style.pointerEvents = 'none';
+    lv1Btn.innerHTML = lv1Btn.innerHTML.replace('OPEN LINKVERTISE #1','COMPLETED ✓');
+  }
+  const n1 = document.getElementById('tnum1'); 
+  if (n1) { n1.classList.add('done-num'); n1.textContent='✓'; }
+  const d1 = document.getElementById('dot1'); 
+  if (d1) { d1.classList.remove('active'); d1.classList.add('done'); d1.textContent='✓'; }
+  const line1 = document.getElementById('line1');
+  if (line1) line1.classList.add('done');
+  const dot2 = document.getElementById('dot2');
+  if (dot2) dot2.classList.add('active');
+  const card2 = document.getElementById('card2');
+  if (card2) card2.classList.remove('locked');
 }
 
-// ================================================================
-//  PAGE LOAD
-// ================================================================
 window.addEventListener('DOMContentLoaded', () => {
   const saved = loadSavedKey();
   if (saved) {
@@ -569,9 +564,6 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// ================================================================
-//  SECURITY MODULE
-// ================================================================
 const _S = (function() {
   const st = {
     lv1Token: null, lv1TabLeft: false, lv1AwayMs: 0,
@@ -582,9 +574,16 @@ const _S = (function() {
   };
 
   function makeToken() {
-    const a = new Uint32Array(4); crypto.getRandomValues(a);
-    return Array.from(a).map(n => n.toString(36)).join('-');
+    try {
+      const a = new Uint32Array(4); 
+      crypto.getRandomValues(a);
+      return Array.from(a).map(n => n.toString(36)).join('-');
+    } catch(e) {
+      // Fallback if crypto is unavailable
+      return Math.random().toString(36).substr(2) + Math.random().toString(36).substr(2);
+    }
   }
+
   function hashToken(tok, salt) {
     let h = 0x811c9dc5;
     const s = tok+'|'+salt;
@@ -614,24 +613,25 @@ const _S = (function() {
     }, 250);
   }
 
-  // Devtools detection — relaxed to avoid false positives from browser
-  // chrome, OS scaling, sidebar panels, and window snapping
   let dtOpen=false, dtTriggers=0, dtCooldown=null;
-  const DT_THRESHOLD = 300; // px — wide margin to avoid false positives
-  const DT_REQUIRED_TRIGGERS = 5; // must trigger this many times before blocking
-  const DT_COOLDOWN_MS = 15000; // reset counter after this idle period
+  const DT_THRESHOLD = 300;
+  const DT_REQUIRED_TRIGGERS = 5;
+  const DT_COOLDOWN_MS = 15000;
+  
   setInterval(()=>{
-    const dw=window.outerWidth-window.innerWidth, dh=window.outerHeight-window.innerHeight;
-    const open = dw>DT_THRESHOLD && dh>DT_THRESHOLD; // both must exceed — much safer
-    if(open&&!dtOpen){
-      dtOpen=true; dtTriggers++;
-      if (dtCooldown) clearTimeout(dtCooldown);
-      dtCooldown = setTimeout(()=>{ dtTriggers=0; }, DT_COOLDOWN_MS);
-      if(dtTriggers>=DT_REQUIRED_TRIGGERS){ st.blocked=true; showSecurityBlock(); }
-    } else if(!open) { dtOpen=false; }
+    if (st.blocked) return; // Skip if already blocked
+    try {
+      const dw=window.outerWidth-window.innerWidth, dh=window.outerHeight-window.innerHeight;
+      const open = dw>DT_THRESHOLD && dh>DT_THRESHOLD;
+      if(open&&!dtOpen){
+        dtOpen=true; dtTriggers++;
+        if (dtCooldown) clearTimeout(dtCooldown);
+        dtCooldown = setTimeout(()=>{ dtTriggers=0; }, DT_COOLDOWN_MS);
+        if(dtTriggers>=DT_REQUIRED_TRIGGERS){ st.blocked=true; showSecurityBlock(); }
+      } else if(!open) { dtOpen=false; }
+    } catch(e) {}
   }, 2000);
 
-  // Visibility API
   document.addEventListener('visibilitychange',()=>{
     if (document.hidden) {
       if (st.activeTask===1&&st.lv1Token&&!st.lv1Done) { leaveTime=Date.now(); st.lv1TabLeft=true; awayCountdown(1); }
@@ -641,38 +641,44 @@ const _S = (function() {
 
       if (st.activeTask===1&&st.lv1TabLeft&&!st.lv1Done) {
         st.lv1AwayMs += Date.now()-leaveTime;
-        document.getElementById('waitTimer1').classList.remove('active');
+        const wt1 = document.getElementById('waitTimer1');
+        if (wt1) wt1.classList.remove('active');
         if (st.lv1AwayMs >= LV_REQUIRED_AWAY_MS) {
           st.lv1ReadyToComplete=true; showDone(1);
         } else {
           const n=Math.ceil((LV_REQUIRED_AWAY_MS-st.lv1AwayMs)/1000);
           showToast(`⚠ Need ${n}s more — please return to the Linkvertise tab!`,'var(--accent2)');
           const hint=document.getElementById('lv1Hint');
-          hint.classList.add('visible','warning'); hint.classList.remove('success');
-          document.getElementById('lv1HintText').textContent=`You need ${n} more seconds on the Linkvertise page. Don't close that tab — go back and finish the steps, then return here and click "I Completed It".`;
+          if (hint) { hint.classList.add('visible','warning'); hint.classList.remove('success'); }
+          const hintText = document.getElementById('lv1HintText');
+          if (hintText) hintText.textContent=`You need ${n} more seconds on the Linkvertise page. Don't close that tab — go back and finish the steps, then return here and click "I Completed It".`;
         }
       }
       if (st.activeTask===2&&st.lv2TabLeft&&!st.lv2Done) {
         st.lv2AwayMs += Date.now()-leaveTime;
-        document.getElementById('waitTimer2').classList.remove('active');
+        const wt2 = document.getElementById('waitTimer2');
+        if (wt2) wt2.classList.remove('active');
         if (st.lv2AwayMs >= LV_REQUIRED_AWAY_MS) {
           st.lv2ReadyToComplete=true; showDone(2);
         } else {
           const n=Math.ceil((LV_REQUIRED_AWAY_MS-st.lv2AwayMs)/1000);
           showToast(`⚠ Need ${n}s more — please return to the Linkvertise tab!`,'var(--accent2)');
           const hint=document.getElementById('lv2Hint');
-          hint.classList.add('visible','warning'); hint.classList.remove('success');
-          document.getElementById('lv2HintText').textContent=`You need ${n} more seconds on the Linkvertise page. Don't close that tab — go back and finish the steps, then return here and click "I Completed It".`;
+          if (hint) { hint.classList.add('visible','warning'); hint.classList.remove('success'); }
+          const hintText = document.getElementById('lv2HintText');
+          if (hintText) hintText.textContent=`You need ${n} more seconds on the Linkvertise page. Don't close that tab — go back and finish the steps, then return here and click "I Completed It".`;
         }
       }
     }
   });
 
   function showDone(n) {
-    document.getElementById('lv'+n+'DoneBtn').style.display='inline-flex';
+    const doneBtn = document.getElementById('lv'+n+'DoneBtn');
+    if (doneBtn) doneBtn.style.display='inline-flex';
     const hint=document.getElementById('lv'+n+'Hint');
-    hint.classList.add('visible','success'); hint.classList.remove('warning');
-    document.getElementById('lv'+n+'HintText').textContent='✓ Verification complete! Click "I Completed It" above to continue.';
+    if (hint) { hint.classList.add('visible','success'); hint.classList.remove('warning'); }
+    const hintText = document.getElementById('lv'+n+'HintText');
+    if (hintText) hintText.textContent='✓ Verification complete! Click "I Completed It" above to continue.';
     showToast('✓ Verified! Click "I Completed It" to continue.');
   }
 
@@ -722,67 +728,80 @@ const _S = (function() {
 
 function showSecurityBlock() {
   if (document.getElementById('secBlock')) return;
-  const o=document.createElement('div'); o.id='secBlock';
+  const o=document.createElement('div'); 
+  o.id='secBlock';
   o.style.cssText='position:fixed;inset:0;background:#050810;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:Orbitron,monospace;text-align:center;padding:40px';
   o.innerHTML=`<div style="font-size:48px;margin-bottom:20px">🔴</div><div style="font-size:18px;font-weight:900;color:#ff3e8a;letter-spacing:2px;margin-bottom:12px">SECURITY BLOCK</div><div style="font-size:13px;color:#4a5568;max-width:320px;line-height:1.8">A bypass attempt was detected.<br>Please reload the page and complete the tasks normally.</div><button onclick="location.reload()" style="margin-top:28px;padding:12px 28px;border-radius:8px;background:linear-gradient(135deg,#ff3e8a,#cc1a60);color:#fff;border:none;font-family:Orbitron,monospace;font-size:12px;font-weight:700;letter-spacing:1.5px;cursor:pointer">RELOAD PAGE</button>`;
   document.body.appendChild(o);
 }
 
-// ================================================================
-//  TASK BUTTON HANDLERS
-// ================================================================
 function onLV1Click() {
   _S.startLV1();
   const hint = document.getElementById('lv1Hint');
-  hint.classList.add('visible'); hint.classList.remove('success','warning');
-  document.getElementById('lv1HintText').textContent='Switch to the Linkvertise tab and complete all the steps there. Come back here when you\'re done.';
-  const b=document.getElementById('lv1Btn'); b.style.opacity='0.6'; b.style.pointerEvents='none';
-  b.innerHTML=b.innerHTML.replace('OPEN LINKVERTISE #1','OPENED — COMPLETE STEPS ✓');
+  if (hint) { hint.classList.add('visible'); hint.classList.remove('success','warning'); }
+  const hintText = document.getElementById('lv1HintText');
+  if (hintText) hintText.textContent='Switch to the Linkvertise tab and complete all the steps there. Come back here when you\'re done.';
+  const b=document.getElementById('lv1Btn'); 
+  if (b) { b.style.opacity='0.6'; b.style.pointerEvents='none'; b.innerHTML=b.innerHTML.replace('OPEN LINKVERTISE #1','OPENED — COMPLETE STEPS ✓'); }
 }
+
 function completeLV1() { _S.finishLV1(_S.getToken1()); }
 
 function onLV1Complete() {
-  document.getElementById('card1').classList.add('completed');
-  document.getElementById('badge1').style.display='inline-flex';
+  const card1 = document.getElementById('card1');
+  if (card1) card1.classList.add('completed');
+  const badge1 = document.getElementById('badge1');
+  if (badge1) badge1.style.display='inline-flex';
   const hint=document.getElementById('lv1Hint');
-  hint.classList.remove('visible'); hint.style.display='none';
-  document.getElementById('lv1DoneBtn').style.display='none';
-  const n1=document.getElementById('tnum1'); n1.classList.add('done-num'); n1.textContent='✓';
-  const d1=document.getElementById('dot1'); d1.classList.remove('active'); d1.classList.add('done'); d1.textContent='✓';
-  document.getElementById('line1').classList.add('done');
-  document.getElementById('dot2').classList.add('active');
-  document.getElementById('card2').classList.remove('locked');
+  if (hint) { hint.classList.remove('visible'); hint.style.display='none'; }
+  const btn = document.getElementById('lv1DoneBtn');
+  if (btn) btn.style.display='none';
+  const n1=document.getElementById('tnum1'); 
+  if (n1) { n1.classList.add('done-num'); n1.textContent='✓'; }
+  const d1=document.getElementById('dot1'); 
+  if (d1) { d1.classList.remove('active'); d1.classList.add('done'); d1.textContent='✓'; }
+  const line1 = document.getElementById('line1');
+  if (line1) line1.classList.add('done');
+  const dot2 = document.getElementById('dot2');
+  if (dot2) dot2.classList.add('active');
+  const card2 = document.getElementById('card2');
+  if (card2) card2.classList.remove('locked');
   showToast('✓ Task 1 complete and saved! Now complete Task 2.');
 }
 
 function onLV2Click() {
   _S.startLV2();
   const hint = document.getElementById('lv2Hint');
-  hint.classList.add('visible'); hint.classList.remove('success','warning');
-  document.getElementById('lv2HintText').textContent='Switch to the Linkvertise tab and complete all the steps there. Come back here when you\'re done.';
-  const b=document.getElementById('lv2Btn'); b.style.opacity='0.6'; b.style.pointerEvents='none';
-  b.innerHTML=b.innerHTML.replace('OPEN LINKVERTISE #2','OPENED — COMPLETE STEPS ✓');
+  if (hint) { hint.classList.add('visible'); hint.classList.remove('success','warning'); }
+  const hintText = document.getElementById('lv2HintText');
+  if (hintText) hintText.textContent='Switch to the Linkvertise tab and complete all the steps there. Come back here when you\'re done.';
+  const b=document.getElementById('lv2Btn'); 
+  if (b) { b.style.opacity='0.6'; b.style.pointerEvents='none'; b.innerHTML=b.innerHTML.replace('OPEN LINKVERTISE #2','OPENED — COMPLETE STEPS ✓'); }
 }
+
 function completeLV2() { _S.finishLV2(_S.getToken2()); }
 
 function onLV2Complete() {
-  document.getElementById('card2').classList.add('completed');
-  document.getElementById('badge2').style.display='inline-flex';
+  const card2 = document.getElementById('card2');
+  if (card2) card2.classList.add('completed');
+  const badge2 = document.getElementById('badge2');
+  if (badge2) badge2.style.display='inline-flex';
   const hint=document.getElementById('lv2Hint');
-  hint.classList.remove('visible'); hint.style.display='none';
-  document.getElementById('lv2DoneBtn').style.display='none';
-  const n2=document.getElementById('tnum2'); n2.classList.add('done-num'); n2.textContent='✓';
-  const d2=document.getElementById('dot2'); d2.classList.remove('active'); d2.classList.add('done'); d2.textContent='✓';
-  document.getElementById('line2').classList.add('done');
-  document.getElementById('dot3').classList.add('active');
+  if (hint) { hint.classList.remove('visible'); hint.style.display='none'; }
+  const btn = document.getElementById('lv2DoneBtn');
+  if (btn) btn.style.display='none';
+  const n2=document.getElementById('tnum2'); 
+  if (n2) { n2.classList.add('done-num'); n2.textContent='✓'; }
+  const d2=document.getElementById('dot2'); 
+  if (d2) { d2.classList.remove('active'); d2.classList.add('done'); d2.textContent='✓'; }
+  const line2 = document.getElementById('line2');
+  if (line2) line2.classList.add('done');
+  const dot3 = document.getElementById('dot3');
+  if (dot3) dot3.classList.add('active');
   showToast('✓ Task 2 complete! Generating your key…');
-  // Show loading animation, then generate
   animateKeyGeneration();
 }
 
-// ================================================================
-//  KEY GENERATION ANIMATION
-// ================================================================
 const GEN_STEPS = [
   'Verifying task completion…',
   'Checking Linkvertise confirmations…',
@@ -792,33 +811,51 @@ const GEN_STEPS = [
 ];
 
 function animateKeyGeneration() {
+  if (isGeneratingKey) return;
+  isGeneratingKey = true;
+  
   const genEl = document.getElementById('keyGenerating');
   const stepEl = document.getElementById('genStepText');
+  if (!genEl) return;
+  
   genEl.classList.add('visible');
   genEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
   let i = 0;
   const interval = setInterval(() => {
     if (i < GEN_STEPS.length) {
-      stepEl.textContent = GEN_STEPS[i];
+      if (stepEl) stepEl.textContent = GEN_STEPS[i];
       i++;
     } else {
       clearInterval(interval);
       setTimeout(() => {
         genEl.classList.remove('visible');
+        isGeneratingKey = false;
         generateKey();
       }, 400);
     }
   }, 380);
 }
 
-// ================================================================
-//  KEY GENERATION
-// ================================================================
-function getDaySeed() { const n=new Date(); return `${n.getUTCFullYear()}${String(n.getUTCMonth()+1).padStart(2,'0')}${String(n.getUTCDate()).padStart(2,'0')}`; }
-function djb2(s)      { let h=5381; for(let i=0;i<s.length;i++)h=(((h<<5)+h)^s.charCodeAt(i))>>>0; return h; }
-function seg(r)       { return djb2(r).toString(36).toUpperCase().padStart(7,'0').slice(-5); }
-function buildKey(sec,day,uid){ const b=`${sec}|${day}|${uid}`; return `AF-${uid}-${seg(b+'2')}-${seg(b+'3')}-${seg(b)}`; }
+function getDaySeed() { 
+  const n=new Date(); 
+  return `${n.getUTCFullYear()}${String(n.getUTCMonth()+1).padStart(2,'0')}${String(n.getUTCDate()).padStart(2,'0')}`; 
+}
+
+function djb2(s) {
+  let h=5381; 
+  for(let i=0;i<s.length;i++) h=(((h<<5)+h)^s.charCodeAt(i))>>>0; 
+  return h; 
+}
+
+function seg(r) { 
+  return djb2(r).toString(36).toUpperCase().padStart(7,'0').slice(-5); 
+}
+
+function buildKey(sec,day,uid){ 
+  const b=`${sec}|${day}|${uid}`; 
+  return `AF-${uid}-${seg(b+'2')}-${seg(b+'3')}-${seg(b)}`; 
+}
 
 function generateKey() {
   if (!_S.isDone()) return;
@@ -827,55 +864,74 @@ function generateKey() {
   const expiry = Date.now()+24*60*60*1000;
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify({key:generatedKey,expiry,generated:Date.now(),uid})); } catch(e){}
   clearProgress();
-  document.getElementById('keyDisplay').textContent = generatedKey;
-  const kc = document.getElementById('keyCard'); kc.classList.add('visible');
-  document.getElementById('dot3').classList.remove('active'); document.getElementById('dot3').classList.add('done');
+  const keyDisplay = document.getElementById('keyDisplay');
+  if (keyDisplay) keyDisplay.textContent = generatedKey;
+  const kc = document.getElementById('keyCard'); 
+  if (kc) kc.classList.add('visible');
+  const dot3 = document.getElementById('dot3');
+  if (dot3) { dot3.classList.remove('active'); dot3.classList.add('done'); }
   launchParticles();
   showToast('🎉 Key generated and saved!');
-  setTimeout(()=>kc.scrollIntoView({behavior:'smooth',block:'center'}),100);
+  setTimeout(()=>{
+    if (kc) kc.scrollIntoView({behavior:'smooth',block:'center'});
+  },100);
 }
 
-// ================================================================
-//  COPY
-// ================================================================
-function copyKey() { if(generatedKey) doCopy(generatedKey,'keyDisplay'); }
-function copySavedKey() {
-  const s=loadSavedKey(); if(!s||s.expiry<=Date.now()){showToast('🔴 This key has expired.','var(--accent2)');return;}
-  doCopy(document.getElementById('savedKeyDisplay').textContent,'savedKeyDisplay');
+function copyKey() { 
+  if(generatedKey) doCopy(generatedKey,'keyDisplay'); 
 }
+
+function copySavedKey() {
+  const s=loadSavedKey(); 
+  if(!s||s.expiry<=Date.now()){ showToast('🔴 This key has expired.','var(--accent2)'); return; }
+  const keyDispEl = document.getElementById('savedKeyDisplay');
+  if (keyDispEl) doCopy(keyDispEl.textContent,'savedKeyDisplay');
+}
+
 function doCopy(text,elId) {
   navigator.clipboard.writeText(text).then(()=>{
     showToast('✓ Copied to clipboard!');
-    const d=document.getElementById(elId); d.style.borderColor='rgba(0,255,136,.9)'; d.style.boxShadow='0 0 40px rgba(0,255,136,.2)';
-    setTimeout(()=>{d.style.borderColor='';d.style.boxShadow='';},1200);
+    const d=document.getElementById(elId); 
+    if (d) {
+      d.style.borderColor='rgba(0,255,136,.9)'; 
+      d.style.boxShadow='0 0 40px rgba(0,255,136,.2)';
+      setTimeout(()=>{ d.style.borderColor=''; d.style.boxShadow=''; },1200);
+    }
   }).catch(()=>showToast('Please select the key and press Ctrl+C / Cmd+C'));
 }
 
-// ================================================================
-//  RENEW MODAL
-// ================================================================
-function openRenewModal() { document.getElementById('renewModal').classList.add('open'); }
-function closeModal()     { document.getElementById('renewModal').classList.remove('open'); }
-function confirmRenew() {
-  closeModal(); clearSavedKey(); clearProgress();
-  // Don't clear af_uid — keeps fingerprint-based persistence
-  if(expiryInterval)clearInterval(expiryInterval);
-  showToast('🔄 Reloading…'); setTimeout(()=>location.reload(),1000);
+function openRenewModal() { 
+  const modal = document.getElementById('renewModal');
+  if (modal) modal.classList.add('open'); 
 }
 
-// ================================================================
-//  PARTICLES
-// ================================================================
+function closeModal() { 
+  const modal = document.getElementById('renewModal');
+  if (modal) modal.classList.remove('open'); 
+}
+
+function confirmRenew() {
+  closeModal(); 
+  clearSavedKey(); 
+  clearProgress();
+  if(expiryInterval) clearInterval(expiryInterval);
+  if(toastTimeout) clearTimeout(toastTimeout);
+  showToast('🔄 Reloading…'); 
+  setTimeout(()=>location.reload(),1000);
+}
+
 function launchParticles() {
   const cols=['#00d4ff','#ff3e8a','#00ff88','#7c3aed','#ffd700'];
-  for(let i=0;i<60;i++) setTimeout(()=>{
-    const p=document.createElement('div'); p.className='particle';
-    p.style.cssText=`left:${Math.random()*100}vw;top:${Math.random()*60}vh;width:${4+Math.random()*8}px;height:${4+Math.random()*8}px;background:${cols[Math.floor(Math.random()*cols.length)]};animation-delay:${Math.random()*.4}s;animation-duration:${1.5+Math.random()}s;`;
-    document.body.appendChild(p); setTimeout(()=>p.remove(),2600);
-  },i*18);
+  for(let i=0;i<60;i++) {
+    setTimeout(()=>{
+      const p=document.createElement('div'); 
+      p.className='particle';
+      p.style.cssText=`left:${Math.random()*100}vw;top:${Math.random()*60}vh;width:${4+Math.random()*8}px;height:${4+Math.random()*8}px;background:${cols[Math.floor(Math.random()*cols.length)]};animation-delay:${Math.random()*.4}s;animation-duration:${1.5+Math.random()}s;`;
+      document.body.appendChild(p); 
+      setTimeout(()=>p.remove(),2600);
+    },i*18);
+  }
 }
 </script>
 </body>
 </html>
-
-
